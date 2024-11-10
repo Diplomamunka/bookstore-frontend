@@ -1,0 +1,87 @@
+.users-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-right: 1rem;
+}
+
+section {
+  padding-top: 2rem;
+}
+
+.users-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+
+.add-new {
+  background-color: #ffb133;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.add-new:hover {
+  background-color: #d6a75c;
+}
+
+.user {
+  border: 1px solid gray;
+  background-color: #ff6854;
+  border-radius: 10px;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  transition-duration: 0.4s;
+}
+
+.user-content {
+  flex: 1;
+}
+
+.email-role {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.email-role .role {
+  color: dimgray;
+  font-style: italic;
+  font-size: 0.8rem;
+  align-self: center;
+}
+
+.user:hover {
+  scale: 1.08;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icons .edit, .icons .delete {
+  color: white;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.delete {
+  background-color: red;
+  transition-duration: 0.4s;
+}
+
+.delete:hover {
+  background-color: darkred;
+}
+
+.edit {
+  background-color: #ffb133;
+  transition-duration: 0.4s;
+}
+
+.edit:hover {
+  background-color: #d6a75c;
+}

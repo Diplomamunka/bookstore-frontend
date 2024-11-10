@@ -1,0 +1,27 @@
+<section>
+  <h1>Personal information</h1>
+  <div class="personal-info">
+    <a [routerLink]="['/profile/edit']" class="edit">
+      <i class="far fa-edit"></i>
+      Edit
+    </a>
+    <dl>
+      <div>
+        <dt>First Name</dt>
+        <dd>{{user?.firstName}}</dd>
+      </div>
+      <div>
+        <dt>Last Name</dt>
+        <dd>{{user?.lastName}}</dd>
+      </div>
+      <div>
+        <dt>Email address</dt>
+        <dd>{{user?.email}}</dd>
+      </div>
+      <div *ngIf="user?.role != 'CUSTOMER'">
+        <dt>Role</dt>
+        <dd>{{user?.role}}</dd>
+      </div>
+    </dl>
+  </div>
+</section>

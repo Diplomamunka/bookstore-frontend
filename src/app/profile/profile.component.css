@@ -1,0 +1,49 @@
+section {
+  margin-top: 6rem;
+}
+
+section h1 {
+  font-size: 2rem;
+}
+
+.personal-info {
+  max-width: 33%;
+  margin-top: 3rem;
+  border: 1px solid gray;
+  border-radius: 8px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background: #ff6854;
+}
+
+dl div {
+  margin: 0.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+
+dt {
+  font-weight: bold;
+  margin-right: 1rem;
+  flex: 1;
+}
+
+dd {
+  margin: 0;
+  flex: 1;
+  text-align: right;
+}
+
+.edit {
+  align-self: self-end;
+  margin-right: 0.5rem;
+  font-style: italic;
+  color: blue;
+}
+
+.edit:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

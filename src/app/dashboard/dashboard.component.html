@@ -1,0 +1,10 @@
+<section class="sidebar">
+  <ul>
+    <li *ngFor="let option of options" [routerLink]="option.url" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+      {{option.option}}
+    </li>
+  </ul>
+</section>
+<section class="content">
+  <router-outlet></router-outlet>
+</section>

@@ -1,0 +1,28 @@
+<section>
+  <h1>{{title}}</h1>
+  <div class="form-container">
+    <form [formGroup]="signupForm" (ngSubmit)="handleSignUp()" class="signup-form">
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" formControlName="firstName" placeholder="John"/>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" formControlName="lastName" placeholder="Doe"/>
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="john.doe@example.com"/>
+      <p [ngClass]="{'invalid': successful !== ''}">{{successful}}</p>
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" title="Must be at least 8 characters long!"/>
+      <label for="password2">Re-type password</label>
+      <input id="password2" type="password" formControlName="password2" #password2/>
+      <p *ngIf="password2.value !== '' && signupForm.errors?.['PasswordNoMatch']">
+        Passwords doesn't match!
+      </p>
+      <div *ngIf="role === 'ADMIN'">
+        <label for="role">Role</label>
+        <select id="role" formControlName="role">
+          <option *ngFor="let option of authService.getRoles()" [value]="option">{{option}}</option>
+        </select>
+      </div>
+      <button type="submit" (submit)="handleSignUp()" [disabled]="!signupForm.valid">{{submitText}}</button>
+    </form>
+  </div>
+</section>

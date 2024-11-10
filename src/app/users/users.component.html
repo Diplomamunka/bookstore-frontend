@@ -1,0 +1,27 @@
+<section class="users-header">
+  <a class="add-new" [routerLink]="['/signup']" [queryParams]="{ add_new: true }">
+    <i class="fa fa-plus"></i>
+    Add new user
+  </a>
+</section>
+<section class="users-container">
+  <section *ngFor="let user of users" class="user">
+    <div class="user-content">
+      <div class="email-role">
+        <p>{{user.email}}</p>
+        <p class="role">{{user.role}}</p>
+      </div>
+      <p class="name">{{user.firstName + ' ' + user.lastName}}</p>
+    </div>
+    <div class="icons">
+      <a [routerLink]="['/users', user.email, 'edit']" class="edit">
+        <i class="far fa-edit"></i>
+        Edit
+      </a>
+      <button class="delete" type="button" (click)="handleDelete(user.email)">
+        <i class="fa-solid fa-trash"></i>
+        Delete
+      </button>
+    </div>
+  </section>
+</section>

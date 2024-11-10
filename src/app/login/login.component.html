@@ -1,0 +1,13 @@
+<section>
+  <h1>Login</h1>
+  <p [ngClass]="{'valid': !invalid, 'invalid': invalid}">Invalid email address or password!</p>
+  <div class="form-container">
+    <form [formGroup]="signInForm" (ngSubmit)="handleSubmit()" class="login-form">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email"/>
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password"/>
+      <button type="submit" (submit)="handleSubmit()" [disabled]="!signInForm.valid">Sign in</button>
+    </form>
+  </div>
+</section>

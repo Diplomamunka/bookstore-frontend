@@ -1,0 +1,33 @@
+.active-link {
+  background-color: #d6a75c;
+  color: orangered !important;
+}
+
+.sidebar ul li {
+  cursor: pointer;
+  padding: 0.4rem 0.5rem;
+}
+
+.sidebar ul li:hover {
+  background-color: #d6a75c;
+}
+
+.sidebar ul li:first-child {
+  border-top-right-radius: 30px;
+}
+
+.sidebar {
+  position: fixed;
+  background-color: #ffb133;
+  display: flex;
+  border-right: 3px solid orangered;
+  border-top-right-radius: 30px;
+  height: 100vh;
+  top: 5rem;
+  width: 10vw;
+  flex-direction: column;
+}
+
+.content {
+  margin-left: 11vw;
+}

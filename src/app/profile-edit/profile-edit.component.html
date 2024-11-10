@@ -1,0 +1,28 @@
+<section>
+  <h1>Edit profile</h1>
+  <div class="form-container">
+    <form [formGroup]="profileEditForm" (ngSubmit)="handleUpdate()" class="signup-form">
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" formControlName="firstName" placeholder="John"/>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" formControlName="lastName" placeholder="Doe"/>
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="john.doe@example.com"/>
+      <p [ngClass]="{'invalid': successful !== ''}">{{successful}}</p>
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" title="Must be at least 8 characters long!"/>
+      <label for="password2">Re-type password</label>
+      <input id="password2" type="password" formControlName="password2" #password2/>
+      <div *ngIf="role === 'ADMIN' && profileEditForm.get('role')">
+        <label for="role">Role</label>
+        <select id="role" formControlName="role">
+          <option *ngFor="let option of authService.getRoles()" [value]="option">{{option}}</option>
+        </select>
+      </div>
+      <p *ngIf="password2.value !== '' && profileEditForm.errors?.['PasswordNoMatch']">
+        Passwords doesn't match!
+      </p>
+      <button type="submit" (submit)="handleUpdate()" [disabled]="!profileEditForm.valid">Update profile</button>
+    </form>
+  </div>
+</section>
