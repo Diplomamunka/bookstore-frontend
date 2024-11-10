@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input, select {
+  border: 1px solid orangered;
+  border-radius: 8px;
+  padding: 4px;
+  color: gray;
+  transition: 0.4s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  scale: 1.02;
+}

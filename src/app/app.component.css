@@ -1,0 +1,215 @@
+:host {
+  --content-padding: 10px;
+}
+
+header h1 {
+  font-size: 220%;
+  font-weight: bold;
+  margin-left: 0.2%;
+  color: white;
+}
+
+.content {
+  margin-top: 5rem;
+}
+
+nav {
+  width: 75%;
+}
+
+nav ul {
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li:first-child a {
+  border: 1px solid orangered;
+  padding: 0 5px 0 5px;
+  transition-duration: 0.4s;
+}
+
+nav ul li:first-child a:hover {
+  box-shadow: 1px 1px 1px gray;
+  scale: 1.05;
+  border-radius: 8px;
+}
+
+nav ul li:first-child a:hover h1 {
+  color: lightgray;
+}
+
+header {
+  background-color: orangered;
+  height: 5rem;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.store-logo {
+  height: 35px;
+  padding: 0 0 0 5px;
+}
+
+header nav ul li {
+  white-space: nowrap;
+}
+
+.non-authenticated {
+  float: right;
+  display: flex;
+  gap: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+}
+
+.non-authenticated a {
+  color: white;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #ffb133;
+  transition-duration: 0.4s;
+  font-weight: bold;
+}
+
+.non-authenticated a:hover {
+  cursor: pointer;
+  background-color: #d6a75c;
+  border: none;
+  scale: 1.02;
+}
+
+.authenticated {
+  float: right;
+  display: flex;
+  gap: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+}
+
+.profile {
+  color: white;
+  flex-grow: 1;
+  border: 1px solid white;
+  border-right: 1px solid darkgray;
+  padding: 0.3rem 0.3rem 0.3rem 0.6rem;
+  border-radius: 10px 0 0 10px;
+  background-color: #ffb133;
+  transition-duration: 0.4s;
+  font-weight: bold;
+}
+
+.profile-container {
+  display: flex;
+  min-width: 160px;
+}
+
+.authenticated button {
+  text-align: center;
+}
+
+.authenticated .fa-caret-down {
+  color: white;
+  background-color: #ffb133;
+  border: 1px solid white;
+  border-radius: 0 10px 10px 0;
+  border-left: 0;
+  font-weight: bold;
+  padding: 0.6rem 0.6rem 0.5rem 0.3rem;
+  transition-duration: 0.4s;
+}
+
+.authenticated .fa-caret-down:hover {
+  background-color: #d6a75c;
+}
+
+.dropDownContent {
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.dropDownContent ul li {
+  text-align: right;
+  padding: 5px;
+  color: black;
+  text-decoration: none;
+  opacity: 1;
+  height: auto;
+  display: block;
+}
+
+.dropDownContent ul {
+  border-radius: 0 0 5px 5px;
+  border-color: white;
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+  background-color: #ffb133;
+}
+
+.dropDownContent ul li:hover {
+  background-color: #d6a75c;
+  cursor: pointer;
+}
+
+.dropDownContent ul li:last-child:hover {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.showing-dropDown {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-color: #ffb133 !important;
+}
+
+.show-dropDown {
+  pointer-events: all;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.profile:hover {
+  background-color: #d6a75c;
+}
+
+.fa-sign-out {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: #ffb133;
+  border: 1px solid white;
+  padding: 0.55rem 0.5rem;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+}
+
+.fa-sign-out:hover {
+  cursor: pointer;
+  background-color: #d6a75c;
+  border: none;
+  scale: 1.02;
+}

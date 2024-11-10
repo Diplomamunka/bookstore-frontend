@@ -1,0 +1,26 @@
+.listing {
+  background: #ff6854;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  border-radius: 30px;
+  width: 400px;
+  height: 400px;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+}
+
+.listing:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.listing .listing-photo {
+  height: auto;
+  width: 200px;
+  max-width: 100%;
+  margin: 10px 0 10px 0;
+  border-radius: 8px;
+}

@@ -1,0 +1,5 @@
+<section [routerLink]="['/books', book.id]" class="listing">
+  <img [src]="book.image" (error)="book.image = 'assets/no_available_image.jpg'" class="listing-photo" alt=""/>
+  <h2>{{book.title}}</h2>
+  <h3 *ngFor="let author of book.authors">{{author.fullName}}</h3>
+</section>
