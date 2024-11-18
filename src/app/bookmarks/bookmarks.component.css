@@ -1,0 +1,12 @@
+h1 {
+  font-size: 2rem;
+}
+
+.bookmarks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  padding: 1rem;
+}

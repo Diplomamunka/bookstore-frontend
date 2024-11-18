@@ -1,4 +1,4 @@
 export interface Category {
-  id: bigint;
+  id?: bigint;
   name: string;
 }

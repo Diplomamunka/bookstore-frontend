@@ -1,6 +1,6 @@
 .active-link {
-  background-color: #d6a75c;
-  color: orangered !important;
+  background-color: var(--hover-color);
+  color: var(--primary-color) !important;
 }
 
 .sidebar ul li {
@@ -9,7 +9,7 @@
 }
 
 .sidebar ul li:hover {
-  background-color: #d6a75c;
+  background-color: var(--hover-color);
 }
 
 .sidebar ul li:first-child {
@@ -18,9 +18,9 @@
 
 .sidebar {
   position: fixed;
-  background-color: #ffb133;
+  background-color: var(--secondary-color);
   display: flex;
-  border-right: 3px solid orangered;
+  border-right: 3px solid var(--primary-color);
   border-top-right-radius: 30px;
   height: 100vh;
   top: 5rem;

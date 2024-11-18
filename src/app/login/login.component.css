@@ -11,8 +11,8 @@ section h1 {
   gap: 0.5rem;
   padding: 2rem 0.5rem;
   border-radius: 30px;
-  background: #ff6854;
-  border: 1px solid gray;
+  background: var(--item-background-color);
+  border: 1px solid var(--secondary-border-color);
 }
 
 .form-container {
@@ -44,8 +44,8 @@ section h1 {
   align-self: center;
   padding: 0.5rem;
   width: 50%;
-  background-color: #ffb133;
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   transition-duration: 0.4s;
   border-radius: 10px;
 }
@@ -54,7 +54,6 @@ section h1 {
   box-sizing: border-box;
   margin: 0;
   width: 100%;
-  color: black;
 }
 
 .login-form button:disabled {

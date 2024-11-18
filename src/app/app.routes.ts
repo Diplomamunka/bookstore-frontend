@@ -9,6 +9,9 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileEditComponent} from "./profile-edit/profile-edit.component";
 import {UsersComponent} from "./users/users.component";
+import {CategoriesComponent} from "./categories/categories.component";
+import {AuthorsComponent} from "./authors/authors.component";
+import {BookmarksComponent} from "./bookmarks/bookmarks.component";
 
 export const routes: Routes = [
   {
@@ -16,7 +19,7 @@ export const routes: Routes = [
     component: HomeComponent,
     title: 'Home page - Boulevard of Chapters',
   },
-  /*{
+  {
     path: 'books/:id',
     component: BookDetailsComponent,
     title: 'Book Details - Boulevard of Chapters',
@@ -25,7 +28,17 @@ export const routes: Routes = [
     path: 'books/:id/edit',
     component: BookEditComponent,
     title: 'Book Edit - Boulevard of Chapters',
-  },*/
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
+    title: 'Categories - Boulevard of Chapters',
+  },
+  {
+    path: 'authors',
+    component: AuthorsComponent,
+    title: 'Authors - Boulevard of Chapters',
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -50,12 +63,12 @@ export const routes: Routes = [
         component: ProfileEditComponent,
         title: 'Edit profile - Boulevard of Chapters',
       },
-      /*{
+      {
         path: 'profile/bookmarks',
-        component: BookDetailsComponent,
+        component: BookmarksComponent,
         title: 'Bookmarks - Boulevard of Chapters',
       },
-      {
+      /*{
         path: 'profile/orders',
         component: BookDetailsComponent,
         title: 'My orders - Boulevard of Chapters',

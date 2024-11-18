@@ -1,0 +1,18 @@
+<h1>Authors</h1>
+<div class="add-new" *ngIf="user?.role !== 'CUSTOMER' && user">
+  <form [formGroup]="addForm" class="add-form" id="add-form" (ngSubmit)="handleAdd()">
+    <input type="text" formControlName="author"/>
+  </form>
+  <button type="button" class="add-button" (click)="changeAdd()">
+    <i class="far fa-plus"></i>
+    Add new
+  </button>
+</div>
+<section class="authors">
+  <app-book-list *ngFor="let author of authors"
+                 [bookDeleteFunction]="authorService.deleteAllBooks(author.id!)"
+                 (deleteClicked)="deleteAuthor(author.id!)"
+                 [books]="authorService.getAllBooks(author.id!)"
+                 [title]="author.fullName" [user]="user" (changedCategory)="editAuthor($event, author.id!)"
+  ></app-book-list>
+</section>

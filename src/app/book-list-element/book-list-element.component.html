@@ -1,0 +1,37 @@
+<section class="book" [ngClass]="{'scale': !disableScaling, 'no-scale': disableScaling}" [routerLink]="['/books', book.id]">
+  <div class="book-image">
+    <img [src]="book.image" (error)="book.image = 'assets/no_available_image.jpg'" alt=""/>
+  </div>
+  <div class="book-details">
+    <div class="book-info">
+      <div class="title-category">
+        <h1>{{book.title}}</h1>
+        <p class="book-category">{{book.category.name}}</p>
+      </div>
+      <div class="book-authors">
+        <p *ngFor="let author of book.authors | slice:0:2">{{author.fullName}}</p>
+        <p *ngIf="book.authors.length > 2" class="more-authors">+{{book.authors.length - 2}} more</p>
+      </div>
+    </div>
+  </div>
+  <div class="book-pricing">
+    <p [ngClass]="{'invisible': book.discount === 0}" class="discount">-{{book.discount}}%</p>
+    <p>{{book.price}} HUF</p>
+    <p [ngClass]="{'text-green-500': book.available, 'text-red-600': !book.available}">
+      {{book.available ? 'Available' : 'Not available'}}
+    </p>
+  </div>
+  <div class="buttons">
+    <button type="button" (mouseenter)="bookmarkHovered = true" (mouseleave)="bookmarkHovered = false" class="bookmark-button" title="Bookmark" *ngIf="user" (click)="bookMarkBook(); $event.stopPropagation()">
+      <i class="fa-solid fa-bookmark" [ngClass]="{'show-bookmark': (bookmarked && !bookmarkHovered) || (!bookmarked && bookmarkHovered)}"></i>
+      <i class="fa-regular fa-bookmark" [ngClass]="{'show-bookmark': (!bookmarked && !bookmarkHovered) || (bookmarked && bookmarkHovered)}"></i>
+    </button>
+    <button type="button" class="delete-button" title="Delete" *ngIf="user && user?.role !== 'CUSTOMER'" (click)="deleteBook(); $event.stopPropagation()">
+      <i class="fa-solid fa-trash"></i>
+      Delete
+    </button>
+    <button type="button" class="cart-button" title="Add to cart">
+      <i class="fa fa-bag-shopping"></i>
+    </button>
+  </div>
+</section>

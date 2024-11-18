@@ -28,7 +28,6 @@ export class LoginComponent {
       this.signInForm.value.email,
       this.signInForm.value.password
     ).subscribe(result => {
-      console.log(result);
       if (result) {
         this.router.navigate(['/']);
       } else {

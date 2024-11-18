@@ -1,18 +1,15 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {CookieService} from "./cookie.service";
+import {Injectable} from '@angular/core';
+import {HttpErrorResponse} from "@angular/common/http";
 import {User} from "./user";
 import {BehaviorSubject, catchError, lastValueFrom, map, of, tap} from "rxjs";
+import {BaseService} from "./base.service";
+import {Book} from "./book";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private url: string = "http://localhost:8080/api";
-  private cookieService: CookieService = inject(CookieService);
+export class AuthService extends BaseService {
   loggedInUser: BehaviorSubject<User| undefined> = new BehaviorSubject<User| undefined>(undefined);
-
-  constructor(private httpClient: HttpClient) {}
 
   public login(email: string, password: string) {
     let authorization: string = `Basic ${btoa(`${email}:${password}`)}`;
@@ -29,7 +26,12 @@ export class AuthService {
   }
 
   initializeUser() {
-    return lastValueFrom(this.logInSavedUser()).then(() => {}).catch((error) => {});
+    return lastValueFrom(this.logInSavedUser()).then(() => {}).catch((error) => {
+      if (error.status === 401)
+        console.log("User token has expired");
+      else
+        console.log(error.message);
+    });
   }
 
   logInSavedUser() {
@@ -76,6 +78,10 @@ export class AuthService {
         catchError((error: HttpErrorResponse) => {
           throw error;
         }));
+  }
+
+  public getBookmarks() {
+    return this.httpClient.get<Book[]>(this.url + "/profile/bookmarks", { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
   }
 
   public getRoles() {

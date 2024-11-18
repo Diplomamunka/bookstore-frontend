@@ -1,5 +1,5 @@
 .listing {
-  background: #ff6854;
+  background: var(--item-background-color);
   display: flex;
   flex-direction: column;
   padding: 10px;

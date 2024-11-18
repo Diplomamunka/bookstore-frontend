@@ -1,0 +1,22 @@
+<section #dropDownButton type="button" (click)="toggleBooks($event)" class="dropDownButton">
+  <h1 *ngIf="!edit">{{title}}</h1>
+  <form *ngIf="edit" [formGroup]="editForm" (ngSubmit)="changeTitle()">
+    <input type="text" class="editing" formControlName="title"/>
+  </form>
+  <div class="action-buttons" *ngIf="user?.role !== 'CUSTOMER' && user">
+    <button type="button" class="edit" (click)="handleEdit()">
+      <i class="far fa-edit"></i>
+    </button>
+    <button type="button" class="delete" (click)="handleDelete()" [disabled]="bookList.length !== 0">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+    <button type="button" (click)="deleteBooks()" class="books-delete" [disabled]="bookList.length === 0">
+      <i class="fa-solid fa-trash"></i>
+      Delete All Books
+    </button>
+  </div>
+</section>
+<div id="books" class="books" [ngClass]="{'show-books': showBooks}">
+  <app-book-list-element *ngFor="let book of bookList" [book]="book" (bookDeleted)="handleBookDelete(book.id!)"/>
+  <p *ngIf="bookList.length === 0" class="text-center">No books in this category!</p>
+</div>

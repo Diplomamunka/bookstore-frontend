@@ -14,20 +14,20 @@
             </a>
           </li>
           <li>
-            <a>
+            <a [routerLink]="['/categories']">
               Categories
             </a>
           </li>
           <li>
-            <a>
+            <a [routerLink]="['/authors']">
               Authors
             </a>
           </li>
         </ul>
       </nav>
       <div class="non-authenticated" *ngIf="cookieService.getCookie('TOKEN') === ''">
-        <a [routerLink]="['/signup']">Sign up</a>
-        <a [routerLink]="['/login']">Sign in</a>
+        <a [routerLink]="['/signup']">Sign Up</a>
+        <a [routerLink]="['/login']">Sign In</a>
       </div>
       <div class="authenticated" *ngIf="cookieService.getCookie('TOKEN')">
         <div class="relative">

@@ -1,0 +1,39 @@
+.categories {
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.add-button {
+  float: right;
+  border-radius: 1rem;
+  background-color: var(--secondary-color);
+  padding: 0.5rem;
+}
+
+.add-button:hover {
+  background-color: var(--hover-color);
+}
+
+.add-new {
+  margin-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.add-form {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.show-form {
+  opacity: 1;
+  pointer-events: all;
+}

@@ -16,18 +16,18 @@ section {
 }
 
 .add-new {
-  background-color: #ffb133;
+  background-color: var(--secondary-color);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
 
 .add-new:hover {
-  background-color: #d6a75c;
+  background-color: var(--hover-color);
 }
 
 .user {
-  border: 1px solid gray;
-  background-color: #ff6854;
+  border: 1px solid var(--secondary-border-color);
+  background-color: var(--item-background-color);
   border-radius: 10px;
   padding: 0.5rem 2rem;
   display: flex;
@@ -45,7 +45,7 @@ section {
 }
 
 .email-role .role {
-  color: dimgray;
+  color: var(--secondary-text-color);
   font-style: italic;
   font-size: 0.8rem;
   align-self: center;
@@ -53,6 +53,7 @@ section {
 
 .user:hover {
   scale: 1.08;
+  z-index: 10;
 }
 
 .icons {
@@ -62,7 +63,7 @@ section {
 }
 
 .icons .edit, .icons .delete {
-  color: white;
+  color: var(--text-color);
   padding: 0.4rem 0.5rem;
   border-radius: 0.3rem;
   font-size: 0.9rem;
@@ -78,10 +79,10 @@ section {
 }
 
 .edit {
-  background-color: #ffb133;
+  background-color: var(--secondary-color);
   transition-duration: 0.4s;
 }
 
 .edit:hover {
-  background-color: #d6a75c;
+  background-color: var(--hover-color);
 }

@@ -1,0 +1,18 @@
+<h1>Categories</h1>
+<div class="add-new" *ngIf="user?.role !== 'CUSTOMER' && user">
+  <form [formGroup]="addForm" class="add-form" id="add-form" (ngSubmit)="handleAdd()">
+    <input type="text" formControlName="category"/>
+  </form>
+  <button type="button" class="add-button" (click)="changeAdd()">
+    <i class="far fa-plus"></i>
+    Add new
+  </button>
+</div>
+<section class="categories">
+  <app-book-list *ngFor="let category of categories"
+                 [bookDeleteFunction]="categoryService.deleteAllBooks(category.id!)"
+                 (deleteClicked)="deleteCategory(category.id!)"
+                 [books]="categoryService.getAllBooks(category.id!)"
+                 [title]="category.name" [user]="user" (changedCategory)="editCategory($event, category.id!)"
+  ></app-book-list>
+</section>

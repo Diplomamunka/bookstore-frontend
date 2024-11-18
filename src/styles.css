@@ -2,11 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+:root, :host {
+  --primary-color: #F14621;
+  --secondary-color: #ffb133;
+  --hover-color: #d6a75c;
+  --item-background-color: #ff6854;
+  --text-color: white;
+  --secondary-text-color: dimgray;
+  --primary-border-color: white;
+  --secondary-border-color: gray;
+}
+
 input, select {
-  border: 1px solid orangered;
+  border: 1px solid var(--primary-color);
   border-radius: 8px;
   padding: 4px;
-  color: gray;
   transition: 0.4s;
 }
 

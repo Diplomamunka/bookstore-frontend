@@ -4,14 +4,17 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, map, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {CookieService} from "./cookie.service";
+import {BaseService} from "./base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookService {
-  private url = 'http://localhost:8080/api/books';
+export class BookService extends BaseService {
 
-  private cookieService = inject(CookieService);
+  constructor(private router: Router, httpClient: HttpClient, cookieService: CookieService) {
+    super(httpClient, cookieService);
+    this.url += "/books";
+  }
 
   getAllBooks() {
     return this.httpClient.get<Book[]>(this.url).pipe(
@@ -24,7 +27,7 @@ export class BookService {
     );
   }
 
-  getBook(id: number) {
+  getBook(id: bigint) {
     return this.httpClient.get<Book>(this.url + `/${id}`).pipe(map(book => {
       book.image = `${this.url}/${id}/image`;
       return book;
@@ -36,7 +39,7 @@ export class BookService {
       }));
   }
 
-  uploadImage(id: number, file: File) {
+  uploadImage(id: bigint, file: File) {
     let formData = new FormData();
     formData.append('image', file);
     return this.httpClient.post(this.url + `/${id}/image`, formData,
@@ -51,9 +54,15 @@ export class BookService {
     this.httpClient.put<Book>(this.url, book);
   }
 
-  deleteBook(id: number) {
-    this.httpClient.delete(this.url + `/${id}`);
+  deleteBook(id: bigint) {
+    return this.httpClient.delete<void>(this.url + `/${id}`);
   }
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  addBookmark(id: bigint) {
+    return this.httpClient.post<Book[]>(this.url + `/${id}/bookmark`, null,  { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+  }
+
+  deleteBookmark(id: bigint) {
+    return this.httpClient.delete<void>(this.url + `/${id}/bookmark`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+  }
 }

@@ -1,4 +1,4 @@
 export interface Author {
-  id: bigint;
+  id?: bigint;
   fullName: string;
 }

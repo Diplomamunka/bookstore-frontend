@@ -1,0 +1,96 @@
+.custom-select {
+  position: relative;
+  width: 300px;
+}
+
+.input-button {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+}
+
+.selected-tags {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+.tags-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.remove-tag {
+  padding-left: 5px;
+}
+
+.remove-tag:hover {
+  cursor: pointer;
+}
+
+.select-input {
+  outline: none;
+  border: none;
+  flex: 1;
+  width: 100%;
+  scale: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.show-all-button {
+  padding: 0.26rem;
+}
+
+.suggestion-list-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+  max-height: 100px;
+  overflow-y: auto;
+  z-index: 1;
+  transform: translateY(-10px);
+  border: 1px solid var(--primary-color);
+  border-radius: 0 0 0.5rem 0.5rem;
+  border-top: none;
+}
+
+.suggestion-list {
+  background-color: var(--text-color);
+}
+
+.show-suggestion-list {
+  opacity: 1;
+  pointer-events: all;
+  height: auto;
+  transform: translateY(0);
+}
+
+.showing-suggestion-list {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.suggestion-list li {
+  height: auto;
+  opacity: 1;
+}
+
+.suggestion-list li.highlighted {
+  background-color: var(--primary-color);
+}
+
+.suggestion-list li:hover {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
