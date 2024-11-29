@@ -26,12 +26,15 @@ export class AuthService extends BaseService {
   }
 
   initializeUser() {
-    return lastValueFrom(this.logInSavedUser()).then(() => {}).catch((error) => {
-      if (error.status === 401)
-        console.log("User token has expired");
-      else
-        console.log(error.message);
-    });
+    if (this.cookieService.getCookie('TOKEN'))
+      return lastValueFrom(this.logInSavedUser()).then(() => {}).catch((error: HttpErrorResponse) => {
+        this.cookieService.deleteCookie('TOKEN');
+        return Promise.resolve();
+      });
+    else {
+      console.log("No valid token found!");
+      return Promise.resolve();
+    }
   }
 
   logInSavedUser() {
@@ -40,7 +43,13 @@ export class AuthService extends BaseService {
       .pipe(tap(user => {
         if (this.loggedInUser.getValue() === undefined) {
           this.loggedInUser.next(user);
-        }
+        } catchError((error: HttpErrorResponse) => {
+          if (error.status === 401)
+            console.log("User token has expired");
+          else
+            console.log(error.message);
+          throw error;
+        })
       }));
   }
 
@@ -117,18 +126,16 @@ export class AuthService extends BaseService {
         options.unshift(
           { option: "Manage users", url: "/users" }
         );
-        // @ts-ignore
+      // @ts-ignore
       case "STAFF":
-        options.unshift(
-          { option: "Manage orders", url: "/orders" }
-        );
-        // @ts-ignore
+      // @ts-ignore
       case "CUSTOMER":
         options.unshift(
           { option: "Bookmarks", url: "/profile/bookmarks" },
-          { option: "My orders", url: "/profile/orders" },
         );
         break;
+      default:
+        return [];
     }
     return options;
   }

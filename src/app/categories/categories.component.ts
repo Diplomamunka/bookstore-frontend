@@ -1,9 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {CategoryService} from "../category.service";
 import {BookListComponent} from "../book-list/book-list.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {Category} from "../category";
-import {RouterLink} from "@angular/router";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {User} from "../user";
 import {AuthService} from "../auth.service";
@@ -14,7 +13,6 @@ import {AuthService} from "../auth.service";
   imports: [
     BookListComponent,
     NgForOf,
-    RouterLink,
     FormsModule,
     ReactiveFormsModule,
     NgIf
@@ -22,7 +20,7 @@ import {AuthService} from "../auth.service";
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit {
   protected categoryService: CategoryService = inject(CategoryService);
   protected authService: AuthService = inject(AuthService);
   protected categories!: Category[];
@@ -49,7 +47,7 @@ export class CategoriesComponent {
   }
 
   editCategory(title: string, id: bigint) {
-    this.categoryService.update({id: id, name: title}).subscribe(category => {
+    this.categoryService.update(id, {name: title}).subscribe(category => {
       this.categories[this.categories.findIndex(c => c.id === category.id)] = category;
     });
   }

@@ -1,18 +1,19 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractControl, FormControl, ReactiveFormsModule, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {NgClass, NgIf, Location, NgForOf} from "@angular/common";
 import {User} from "../user";
+import {CustomSelectComponent} from "../custom-select/custom-select.component";
 
 @Component({
   selector: 'app-profile-edit',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgClass, NgForOf],
+  imports: [ReactiveFormsModule, NgIf, NgClass, NgForOf, CustomSelectComponent],
   templateUrl: './profile-edit.component.html',
   styleUrl: './profile-edit.component.css'
 })
-export class ProfileEditComponent {
+export class ProfileEditComponent implements OnInit {
   private route: ActivatedRoute = inject(ActivatedRoute);
   protected authService: AuthService = inject(AuthService);
   protected user!: User;

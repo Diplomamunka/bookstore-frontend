@@ -1,6 +1,6 @@
-import {Component, ElementRef, HostListener, inject, ViewChild} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
-import {NgForOf, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {CookieService} from "./cookie.service";
 import {User} from "./user";
 import {AuthService} from "./auth.service";
@@ -8,22 +8,17 @@ import {AuthService} from "./auth.service";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, NgIf, NgForOf],
+  imports: [RouterOutlet, RouterLink, NgIf, NgForOf, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   protected cookieService: CookieService = inject(CookieService);
   protected authService: AuthService = inject(AuthService);
   protected user: User | undefined;
+  protected showDropDown: boolean = false;
   protected profileOptions: { option: string, url: string }[] = [];
   title = 'Boulevard of Chapters'
-
-  @ViewChild('profileDropDown')
-  private profileDropDown: ElementRef | undefined;
-
-  @ViewChild('dropDownButton')
-  private dropDownButton: ElementRef | undefined;
 
   constructor(private router: Router) {}
 
@@ -45,29 +40,13 @@ export class AppComponent {
   }
 
   toggleProfileOptions() {
-    document.getElementById("profileDropDown")!.classList.toggle("show-dropDown");
-    document.getElementById("dropDownButton")!.classList.toggle("showing-dropDown");
-    document.getElementById("profile")!.classList.toggle("showing-dropDown");
+    this.showDropDown = !this.showDropDown;
   }
 
-  @HostListener('window:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (this.cookieService.getCookie('TOKEN') && !this.profileDropDown!.nativeElement.contains(event.target) &&
-        !this.dropDownButton!.nativeElement.contains(event.target)) {
-      this.closeDropDown();
-    } else if (this.cookieService.getCookie('TOKEN') && this.profileDropDown!.nativeElement.contains(event.target)) {
-      this.closeDropDown();
+  @HostListener('window:click')
+  onClick() {
+    if (this.cookieService.getCookie('TOKEN') && this.showDropDown) {
+      this.showDropDown = false;
     }
-  }
-
-  private closeDropDown() {
-    let dropDowns = document.getElementsByClassName("dropDownContent");
-    for (let i = 0; i < dropDowns.length; i++) {
-      if (dropDowns[i].classList.contains("show-dropDown")) {
-        dropDowns[i].classList.remove("show-dropDown");
-      }
-    }
-    document.getElementById("dropDownButton")!.classList.remove("showing-dropDown");
-    document.getElementById("profile")!.classList.remove("showing-dropDown");
   }
 }

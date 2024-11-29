@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import {Component, inject, OnInit} from '@angular/core';
+import {NgForOf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {User} from "../user";
@@ -8,14 +8,13 @@ import {User} from "../user";
   selector: 'app-users',
   standalone: true,
   imports: [
-    NgIf,
     RouterLink,
     NgForOf
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   protected authService: AuthService = inject(AuthService);
   protected users: User[] = [];
 

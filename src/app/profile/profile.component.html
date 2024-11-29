@@ -8,19 +8,19 @@
     <dl>
       <div>
         <dt>First Name</dt>
-        <dd>{{user?.firstName}}</dd>
+        <dd>{{user.firstName}}</dd>
       </div>
       <div>
         <dt>Last Name</dt>
-        <dd>{{user?.lastName}}</dd>
+        <dd>{{user.lastName}}</dd>
       </div>
       <div>
         <dt>Email address</dt>
-        <dd>{{user?.email}}</dd>
+        <dd>{{user.email}}</dd>
       </div>
-      <div *ngIf="user?.role != 'CUSTOMER'">
+      <div *ngIf="user.role != 'CUSTOMER'">
         <dt>Role</dt>
-        <dd>{{user?.role}}</dd>
+        <dd>{{user.role}}</dd>
       </div>
     </dl>
   </div>

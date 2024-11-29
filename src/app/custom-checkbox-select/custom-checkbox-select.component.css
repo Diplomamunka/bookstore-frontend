@@ -1,17 +1,36 @@
 .custom-select {
   position: relative;
+  flex-grow: 1;
   width: 300px;
+}
+
+.selected-options-value {
+  margin-left: 0.3rem;
+  font-size: 1.1rem;
+  color: blue;
+}
+
+.selected-options-value:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.custom-select-wrapper {
+  display: flex;
+  align-items: center;
+  width: 325px;
 }
 
 .input-button {
   background-color: white;
   display: flex;
+  flex-grow: 1;
   align-items: center;
   border: 1px solid var(--primary-color);
   border-radius: 0.5rem;
 }
 
-.selected-tag {
+.selected-tags {
   display: flex;
   align-items: center;
   margin-left: 0.2rem;
@@ -19,7 +38,7 @@
   background-color: lightgray;
 }
 
-.tag-input-wrapper {
+.tags-input-wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -50,18 +69,19 @@
 }
 
 .suggestion-list-container {
-  overflow-y: auto;
   max-height: 100px;
+  overflow-y: auto;
+  z-index: 1;
 }
 
 .suggestion-wrapper {
   position: absolute;
   overflow: hidden;
+  z-index: 1000;
   top: 100%;
   left: 0;
   right: 0;
   opacity: 0;
-  z-index: 1000;
   height: 0;
   pointer-events: none;
   transform: translateY(-10px);

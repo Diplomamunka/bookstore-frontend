@@ -10,7 +10,7 @@ section h1 {
   width: 20%;
   gap: 0.5rem;
   padding: 2rem 0.5rem;
-  border-radius: 30px;
+  border-radius: 2rem;
   background: var(--item-background-color);
   border: 1px solid var(--secondary-border-color);
 }

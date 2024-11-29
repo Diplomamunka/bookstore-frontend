@@ -1,5 +1,5 @@
 header h1 {
-  font-size: 220%;
+  font-size: 2.2em;
   font-weight: bold;
   margin-left: 0.2%;
   color: var(--text-color);
@@ -31,14 +31,14 @@ nav ul li a {
 
 nav ul li:first-child a {
   border: 1px solid var(--primary-color);
-  padding: 0 5px 0 5px;
+  padding: 0 0.3rem 0 0.3rem;
   transition-duration: 0.4s;
 }
 
 nav ul li:first-child a:hover {
   box-shadow: 1px 1px 1px gray;
   scale: 1.05;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 }
 
 nav ul li:first-child a:hover h1 {
@@ -50,6 +50,7 @@ header {
   height: 5rem;
   display: flex;
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -57,7 +58,7 @@ header {
 
 .store-logo {
   height: 35px;
-  padding: 0 0 0 5px;
+  padding: 0 0 0 0.3rem;
 }
 
 header nav ul li {
@@ -67,7 +68,7 @@ header nav ul li {
 .non-authenticated {
   float: right;
   display: flex;
-  gap: 50px;
+  gap: 3.1rem;
   margin-right: auto;
   margin-left: auto;
   align-items: center;
@@ -76,8 +77,8 @@ header nav ul li {
 .non-authenticated a {
   color: var(--text-color);
   border: 1px solid var(--primary-border-color);
-  padding: 5px 10px;
-  border-radius: 10px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.6rem;
   background-color: var(--secondary-color);
   transition-duration: 0.4s;
   font-weight: bold;
@@ -93,7 +94,7 @@ header nav ul li {
 .authenticated {
   float: right;
   display: flex;
-  gap: 50px;
+  gap: 3.1rem;
   margin-right: auto;
   margin-left: auto;
   align-items: center;
@@ -105,7 +106,7 @@ header nav ul li {
   border: 1px solid var(--primary-border-color);
   border-right: 1px solid darkgray;
   padding: 0.3rem 0.3rem 0.3rem 0.6rem;
-  border-radius: 10px 0 0 10px;
+  border-radius: 0.6rem 0 0 0.6rem;
   background-color: var(--secondary-color);
   transition-duration: 0.4s;
   font-weight: bold;
@@ -120,18 +121,21 @@ header nav ul li {
   text-align: center;
 }
 
-.authenticated .fa-caret-down {
+.authenticated .profileDropDown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-color);
   background-color: var(--secondary-color);
   border: 1px solid var(--primary-border-color);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 0.6rem 0.6rem 0;
   border-left: 0;
   font-weight: bold;
-  padding: 0.6rem 0.6rem 0.5rem 0.3rem;
+  padding: 0 0.5rem;
   transition-duration: 0.4s;
 }
 
-.authenticated .fa-caret-down:hover {
+.authenticated .profileDropDown:hover {
   background-color: var(--hover-color);
 }
 
@@ -150,7 +154,7 @@ header nav ul li {
 
 .dropDownContent ul li {
   text-align: right;
-  padding: 5px;
+  padding: 0.3rem;
   color: black;
   text-decoration: none;
   opacity: 1;
@@ -159,7 +163,7 @@ header nav ul li {
 }
 
 .dropDownContent ul {
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 0.6rem 0.6rem;
   border-color: var(--primary-border-color);
   border-style: solid;
   border-width: 0 1px 1px 1px;
@@ -172,8 +176,8 @@ header nav ul li {
 }
 
 .dropDownContent ul li:last-child:hover {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
 }
 
 .showing-dropDown {
@@ -192,19 +196,17 @@ header nav ul li {
   background-color: var(--hover-color);
 }
 
-.fa-sign-out {
-  text-align: center;
+.sign-out {
   font-weight: bold;
   color: var(--text-color);
   background-color: var(--secondary-color);
   border: 1px solid var(--primary-border-color);
-  padding: 0.55rem 0.5rem;
-  border-radius: 5px;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.6rem;
   transition-duration: 0.4s;
 }
 
-.fa-sign-out:hover {
-  cursor: pointer;
+.sign-out:hover {
   background-color: var(--hover-color);
   border: none;
   scale: 1.02;

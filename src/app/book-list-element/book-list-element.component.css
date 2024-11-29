@@ -40,14 +40,29 @@
 }
 
 .book-authors {
+  display: flex;
+  gap: 0.5rem;
   margin: 0;
+  align-items: center;
   font-size: 0.9rem;
+}
+
+.author {
+  background: lightgray;
+  padding: 0.1rem;
+  border-radius: 0.5rem;
 }
 
 .more-authors {
   font-style: italic;
   font-size: 0.9rem;
   color: var(--secondary-text-color);
+}
+
+.tags {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .book-pricing {
@@ -112,17 +127,4 @@
 
 .show-bookmark {
   display: inline-block !important;
-}
-
-.cart-button {
-  background-color: limegreen;
-  color: var(--text-color);
-  padding: 0.3rem 1.763rem;
-  border-radius: 0.5rem;
-  transition-duration: 0.4s;
-  margin-top: auto;
-}
-
-.cart-button:hover {
-  background-color: forestgreen;
 }

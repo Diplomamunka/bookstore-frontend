@@ -28,7 +28,7 @@ section {
 .user {
   border: 1px solid var(--secondary-border-color);
   background-color: var(--item-background-color);
-  border-radius: 10px;
+  border-radius: 0.6rem;
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;

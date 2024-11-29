@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractControl, FormControl, ReactiveFormsModule, FormGroup, ValidationErrors, Validators} from "@angular/forms";
@@ -11,7 +11,7 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit{
   protected authService: AuthService = inject(AuthService);
   protected title: string = '';
   protected successful: string = '';

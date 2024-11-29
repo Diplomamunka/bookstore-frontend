@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../user";
 import {AuthService} from "../auth.service";
-import {Router, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -14,16 +14,13 @@ import {NgIf} from "@angular/common";
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
-  protected user: User | undefined;
+export class ProfileComponent implements OnInit {
+  protected user!: User;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.authService.logInSavedUser().subscribe({
-      next: user => this.user = user,
-      error: () => this.router.navigate(['404'])
-    });
+    this.authService.loggedInUser.subscribe(user => this.user = user!);
   }
 }

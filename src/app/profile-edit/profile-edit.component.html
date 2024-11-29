@@ -1,7 +1,7 @@
 <section>
   <h1>Edit profile</h1>
   <div class="form-container">
-    <form [formGroup]="profileEditForm" (ngSubmit)="handleUpdate()" class="signup-form">
+    <form [formGroup]="profileEditForm" (ngSubmit)="handleUpdate()" class="profile-edit-form">
       <label for="firstName">First Name</label>
       <input id="firstName" type="text" formControlName="firstName" placeholder="John"/>
       <label for="lastName">Last Name</label>
@@ -14,10 +14,9 @@
       <label for="password2">Re-type password</label>
       <input id="password2" type="password" formControlName="password2" #password2/>
       <div *ngIf="role === 'ADMIN' && profileEditForm.get('role')">
-        <label for="role">Role</label>
-        <select id="role" formControlName="role">
-          <option *ngFor="let option of authService.getRoles()" [value]="option">{{option}}</option>
-        </select>
+        <label>Role
+          <app-custom-select [options]="authService.getRoles()" formControlName="role"/>
+        </label>
       </div>
       <p *ngIf="password2.value !== '' && profileEditForm.errors?.['PasswordNoMatch']">
         Passwords doesn't match!

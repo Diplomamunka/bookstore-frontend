@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../user";
 import {AuthService} from "../auth.service";
-import {BookService} from "../book.service";
 import {Book} from "../book";
 import {BookListElementComponent} from "../book-list-element/book-list-element.component";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-bookmarks',
@@ -13,16 +12,15 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
     BookListElementComponent,
     NgForOf,
     NgIf,
-    NgClass
   ],
   templateUrl: './bookmarks.component.html',
   styleUrl: './bookmarks.component.css'
 })
-export class BookmarksComponent {
+export class BookmarksComponent implements OnInit {
   protected user: User | undefined;
   protected bookmarks: Book[] = [];
 
-  constructor(private authService: AuthService, private bookService: BookService) {
+  constructor(private authService: AuthService) {
 
   }
 

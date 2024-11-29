@@ -32,12 +32,12 @@
       <div class="authenticated" *ngIf="cookieService.getCookie('TOKEN')">
         <div class="relative">
           <div class="profile-container">
-            <a class="profile" #profile id="profile" [routerLink]="['/profile']">{{user?.firstName}} {{user?.lastName}}</a>
-            <button type="button" (click)="toggleProfileOptions()" title="DropDown">
-              <i #dropDownButton id="dropDownButton" class="fa fa-caret-down"></i>
+            <a class="profile" [ngClass]="{'showing-dropDown':showDropDown}" [routerLink]="['/profile']">{{user?.firstName}} {{user?.lastName}}</a>
+            <button [ngClass]="{'showing-dropDown': showDropDown}" type="button" (click)="toggleProfileOptions(); $event.stopPropagation()" class="profileDropDown" title="DropDown">
+              <i class="fa fa-caret-down"></i>
             </button>
           </div>
-          <div #profileDropDown id="profileDropDown" class="dropDownContent">
+          <div [ngClass]="{'show-dropDown':showDropDown}" class="dropDownContent">
             <ul>
               <li *ngFor="let option of profileOptions" [routerLink]="[option.url]">
                 {{option.option}}
@@ -45,7 +45,7 @@
             </ul>
           </div>
         </div>
-        <button type="button" title="Sign out" (click)="handleSignOut()">
+        <button type="button" class="sign-out" title="Sign out" (click)="handleSignOut()">
           <i class="fa fa-sign-out"></i>
         </button>
       </div>

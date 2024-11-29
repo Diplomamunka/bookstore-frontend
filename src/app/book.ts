@@ -7,10 +7,11 @@ export interface Book {
   price: number;
   authors: Author[];
   category: Category;
-  short_description?: string;
+  shortDescription?: string;
   discount: number;
   available: boolean;
-  release_date?: Date;
-  tags?: string[];
+  releaseDate?: Date;
+  tags: string[];
   image?: string;
 }
+

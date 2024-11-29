@@ -1,0 +1,107 @@
+h1 {
+  font-weight: 500;
+  font-size: 2em;
+}
+
+article {
+  margin-left: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book-change {
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+
+.delete-button {
+  background-color: red;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition-duration: 0.4s;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.edit {
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.7rem 0 0.8rem;
+  background-color: var(--secondary-color);
+  transition-duration: 0.4s;
+}
+
+.edit:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+img {
+  width: 400px;
+  height: auto;
+  object-fit: contain;
+  align-self: flex-start;
+  border-radius: 0.2rem;
+}
+
+.book-details {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+.tags, .authors {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+
+.book-info .group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.discount {
+  color: var(--text-color);
+  text-align: center;
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  background: rgb(34 197 94);
+}
+
+.book-info {
+  max-width: 700px;
+}
+
+.description {
+  margin-top: 2rem;
+  word-wrap: break-word;
+  text-align: justify;
+}
+
+.book-pricing {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 3rem;
+  align-self: center;
+}

@@ -1,11 +1,10 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Book} from "../book";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {Observable} from "rxjs";
 import {BookListElementComponent} from "../book-list-element/book-list-element.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {User} from "../user";
-import {Category} from "../category";
 
 @Component({
   selector: 'app-book-list',
@@ -20,10 +19,7 @@ import {Category} from "../category";
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css'
 })
-export class BookListComponent {
-  @ViewChild('dropDownButton')
-  private dropDownButton!: ElementRef;
-
+export class BookListComponent implements OnInit {
   protected bookList: Book[] = [];
   @Input() title!: string;
   @Input() books!: Observable<Book[]>;
@@ -31,7 +27,7 @@ export class BookListComponent {
   protected edit: boolean = false;
   @Input() bookDeleteFunction!: Observable<void>;
   @Input() user: User | undefined;
-  @Input() editFunction!:() => Observable<string>;
+  @Input() editFunction!: Observable<string>;
   @Output() deleteClicked: EventEmitter<void> = new EventEmitter();
   @Output() changedCategory: EventEmitter<string> = new EventEmitter();
 
@@ -44,15 +40,13 @@ export class BookListComponent {
     this.editForm.get('title')?.setValue(this.title);
   }
 
-  toggleBooks($event: MouseEvent) {
-    if (this.dropDownButton.nativeElement === $event.target) {
-      this.showBooks = !this.showBooks;
-    }
+  toggleBooks() {
+    this.showBooks = !this.showBooks;
   }
 
   deleteBooks() {
     this.bookDeleteFunction.subscribe({
-      next: () => this.bookList = [],
+      next: () => this.books.subscribe(books => this.bookList = books),
       error: err => {
         console.log(err);
         throw err;
@@ -76,10 +70,9 @@ export class BookListComponent {
   }
 
   handleEdit() {
-    if (this.edit) {
+    if (this.edit)
       this.changeTitle();
-    } else {
+    else
       this.edit = !this.edit;
-    }
   }
 }

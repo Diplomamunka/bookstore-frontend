@@ -3,7 +3,7 @@
   <form [formGroup]="addForm" class="add-form" id="add-form" (ngSubmit)="handleAdd()">
     <input type="text" formControlName="author"/>
   </form>
-  <button type="button" class="add-button" (click)="changeAdd()">
+  <button type="button" class="add-button" (click)="changeAdd()" title="Add">
     <i class="far fa-plus"></i>
     Add new
   </button>

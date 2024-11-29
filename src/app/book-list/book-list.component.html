@@ -1,16 +1,16 @@
-<section #dropDownButton type="button" (click)="toggleBooks($event)" class="dropDownButton">
+<section type="button" (click)="toggleBooks()" class="dropDownButton">
   <h1 *ngIf="!edit">{{title}}</h1>
   <form *ngIf="edit" [formGroup]="editForm" (ngSubmit)="changeTitle()">
-    <input type="text" class="editing" formControlName="title"/>
+    <input type="text" class="editing" (click)="$event.stopPropagation()" formControlName="title"/>
   </form>
   <div class="action-buttons" *ngIf="user?.role !== 'CUSTOMER' && user">
-    <button type="button" class="edit" (click)="handleEdit()">
+    <button type="button" class="edit" title="Edit" (click)="handleEdit(); $event.stopPropagation()">
       <i class="far fa-edit"></i>
     </button>
-    <button type="button" class="delete" (click)="handleDelete()" [disabled]="bookList.length !== 0">
+    <button type="button" class="delete" title="Delete" (click)="handleDelete(); $event.stopPropagation()" [disabled]="bookList.length !== 0">
       <i class="fa-solid fa-trash"></i>
     </button>
-    <button type="button" (click)="deleteBooks()" class="books-delete" [disabled]="bookList.length === 0">
+    <button type="button" (click)="deleteBooks(); $event.stopPropagation()" title="Delete All" class="books-delete" [disabled]="bookList.length === 0">
       <i class="fa-solid fa-trash"></i>
       Delete All Books
     </button>

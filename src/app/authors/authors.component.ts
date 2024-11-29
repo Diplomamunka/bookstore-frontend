@@ -1,7 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {BookListComponent} from "../book-list/book-list.component";
 import {NgForOf, NgIf} from "@angular/common";
-import {RouterLink} from "@angular/router";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {User} from "../user";
 import {AuthService} from "../auth.service";
@@ -14,7 +13,6 @@ import {Author} from "../author";
   imports: [
     BookListComponent,
     NgForOf,
-    RouterLink,
     FormsModule,
     ReactiveFormsModule,
     NgIf
@@ -22,7 +20,7 @@ import {Author} from "../author";
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.css'
 })
-export class AuthorsComponent {
+export class AuthorsComponent implements OnInit {
   protected authorService: AuthorService = inject(AuthorService);
   protected authService: AuthService = inject(AuthService);
   protected authors!: Author[];
@@ -49,7 +47,7 @@ export class AuthorsComponent {
   }
 
   editAuthor(author: string, id: bigint) {
-    this.authorService.update({id: id, fullName: author}).subscribe(author => {
+    this.authorService.update(id, {fullName: author}).subscribe(author => {
       this.authors[this.authors.findIndex(a => a.id === author.id)] = author;
     });
   }
