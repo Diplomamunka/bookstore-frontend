@@ -1,0 +1,33 @@
+h1 {
+  font-size: 2rem;
+}
+
+books {
+  display: flex;
+}
+
+.add-new {
+  float: right;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border-radius: 0.6rem;
+  background-color: var(--secondary-color);
+  transition-duration: 0.4s;
+  color: white;
+}
+
+.add-new:hover {
+  background-color: var(--hover-color);
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding: 3rem;
+}
+
+app-book-list-element {
+  flex-grow: 1;
+}

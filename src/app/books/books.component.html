@@ -1,1 +1,8 @@
-<p>books works!</p>
+<h1>Books</h1>
+<a [routerLink]="['/books', 'new']" *ngIf="user && user?.role !== 'CUSTOMER'" class="add-new">
+  <i class="far fa-plus"></i>
+  Add new
+</a>
+<section class="books">
+  <app-book-list-element *ngFor="let book of books" [disableScaling]="true" [book]="book" (bookDeleted)="handleBookDelete(book.id!)"/>
+</section>

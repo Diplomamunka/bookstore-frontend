@@ -30,4 +30,12 @@ export class BookmarksComponent implements OnInit {
       this.authService.getBookmarks().subscribe(books => this.bookmarks = books.sort((a, b) => a.title.localeCompare(b.title)));
     });
   }
+
+  handleBookmarkDelete(id: bigint) {
+    this.bookmarks.splice(this.bookmarks.findIndex(book => book.id === id), 1);
+  }
+
+  handleBookDelete(id: bigint) {
+    this.bookmarks.splice(this.bookmarks.findIndex(book => book.id === id), 1);
+  }
 }

@@ -1,13 +1,17 @@
 <article>
   <div class="header">
     <h1>{{book.title}}</h1>
-    <div class="book-change">
-      <a [routerLink]="['/books', book.id, 'edit']" class="edit">
+    <div class="book-buttons">
+      <a [routerLink]="['/books', book.id, 'edit']" *ngIf="user && user?.role !== 'CUSTOMER'" class="edit">
         <i class="fa fa-edit"></i>
       </a>
-      <button type="button" class="delete-button" title="Delete" (click)="handleDelete()">
+      <button type="button" class="delete-button" title="Delete" *ngIf="user && user?.role !== 'CUSTOMER'" (click)="handleDelete()">
         <i class="fa-solid fa-trash"></i>
         Delete
+      </button>
+      <button type="button" (mouseenter)="bookmarkHovered = true" (mouseleave)="bookmarkHovered = false" class="bookmark-button" title="Bookmark" *ngIf="user" (click)="bookMarkBook()">
+        <i class="fa-solid fa-bookmark" [ngClass]="{'show-bookmark': (bookmarked && !bookmarkHovered) || (!bookmarked && bookmarkHovered)}"></i>
+        <i class="fa-regular fa-bookmark" [ngClass]="{'show-bookmark': (!bookmarked && !bookmarkHovered) || (bookmarked && bookmarkHovered)}"></i>
       </button>
     </div>
   </div>

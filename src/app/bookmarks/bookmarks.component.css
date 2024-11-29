@@ -4,9 +4,12 @@ h1 {
 
 .bookmarks {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
   margin-top: 3rem;
-  padding: 1rem;
+  padding: 3rem;
+}
+
+app-book-list-element {
+  flex-grow: 1;
 }

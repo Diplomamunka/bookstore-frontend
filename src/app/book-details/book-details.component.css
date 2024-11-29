@@ -13,7 +13,7 @@ article {
   justify-content: space-between;
 }
 
-.book-change {
+.book-buttons {
   display: flex;
   gap: 1rem;
   margin-right: 2rem;
@@ -28,6 +28,25 @@ article {
 
 .delete-button:hover {
   background-color: darkred;
+}
+
+.show-bookmark {
+  display: inline-block !important;
+}
+
+.bookmark-button {
+  background-color: var(--secondary-color);
+  padding: 0 0.8rem;
+  border-radius: 0.6rem;
+  transition-duration: 0.4s;
+}
+
+.bookmark-button:hover {
+  background-color: var(--hover-color);
+}
+
+.bookmark-button i {
+  display: none;
 }
 
 .edit {
