@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   handleSignOut() {
-    this.authService.signout().subscribe(() => this.router.navigate(['/']));
+    this.authService.signOut().subscribe(() => this.router.navigate(['/']));
   }
 
   toggleProfileOptions() {

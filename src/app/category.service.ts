@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "./base.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
 import {Book} from "./book";
 import {Category} from "./category";
-import {map} from "rxjs";
+import {catchError, map} from "rxjs";
 import {BookService} from "./book.service";
 
 @Injectable({
@@ -18,7 +18,12 @@ export class CategoryService extends BaseService {
   }
 
   deleteAllBooks(id: bigint) {
-    return this.httpClient.delete<void>(`${this.url}/${id}/books`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.delete<void>(`${this.url}/${id}/books`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 500)
+          alert("Could not delete, because of one of the books caused an internal server error!");
+        throw error;
+      }));
   }
 
   getAllBooks(id: bigint) {
@@ -33,16 +38,33 @@ export class CategoryService extends BaseService {
 
   new(category: Category) {
     return this.httpClient.post<Category>(this.url, category, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
-      .pipe(map(category => CategoryService.modifyCategory(category)));
+      .pipe(map(category => CategoryService.modifyCategory(category)),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 409)
+            alert(error.error);
+          throw error;
+        }));
   }
 
   update(id: bigint, category: Category) {
     return this.httpClient.put<Category>(`${this.url}/${id}`, category, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
-      .pipe(map(category => CategoryService.modifyCategory(category)));
+      .pipe(map(category => CategoryService.modifyCategory(category)),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 409)
+            alert(error.error);
+          else if (error.status === 404)
+            alert(error.error);
+          throw error;
+        }));
   }
 
   delete(id: bigint) {
-    return this.httpClient.delete<void>(`${this.url}/${id}`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.delete<void>(`${this.url}/${id}`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 409)
+          alert(error.error);
+        throw error;
+      }));
   }
 
   public static modifyCategory(category: Category) {

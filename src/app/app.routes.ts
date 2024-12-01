@@ -1,9 +1,9 @@
 import {
   ActivatedRouteSnapshot,
   createUrlTreeFromSnapshot,
-  RedirectCommand,
+  RedirectCommand, Route, Router,
   RouterStateSnapshot,
-  Routes,
+  Routes, UrlSegment,
   UrlTree
 } from '@angular/router';
 import {HomeComponent} from './home/home.component';
@@ -25,6 +25,9 @@ import {inject} from "@angular/core";
 import {User} from "./user";
 import {UnauthorizedComponent} from "./unauthorized/unauthorized.component";
 import {BooksComponent} from "./books/books.component";
+import {CanMatchBookService} from "./can-match-book.service";
+import {catchError, map, of} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 export const routes: Routes = [
   {
@@ -40,21 +43,23 @@ export const routes: Routes = [
     data: { requiredRoles: ['ADMIN', 'STAFF'] }
   },
   {
-    path: 'books/:id',
-    component: BookDetailsComponent,
-    title: 'Book Details - Boulevard of Chapters',
-  },
-  {
     path: 'books/:id/edit',
     component: BookEditComponent,
     title: 'Book Edit - Boulevard of Chapters',
     canActivate: [AuthGuardService],
+    canMatch: [CanMatchBookService],
     data: { requiredRoles: ['ADMIN', 'STAFF'] }
+  },
+  {
+    path: 'books/:id',
+    component: BookDetailsComponent,
+    title: 'Book Details - Boulevard of Chapters',
+    canMatch: [CanMatchBookService]
   },
   {
     path: 'books',
     component: BooksComponent,
-    title: 'Books - Boulevard of Chapters',
+    title: 'Books - Boulevard of Chapters'
   },
   {
     path: 'categories',
@@ -134,7 +139,25 @@ export const routes: Routes = [
         component: ProfileEditComponent,
         title: 'Edit user - Boulevard of Chapters',
         canActivate: [AuthGuardService],
-        data: { requiredRoles: ['ADMIN'] }
+        data: { requiredRoles: ['ADMIN'] },
+        canMatch: [(route: Route, urlSegments: UrlSegment[]) => {
+          const authService: AuthService = inject(AuthService);
+          const router: Router = inject(Router);
+
+          const loginSegment = urlSegments.find(segment => !isNaN(+segment.path));
+          const login = loginSegment ? loginSegment.path : undefined;
+
+          if (login) {
+            return authService.getUser(login).pipe(map(() => true),
+              catchError((error: HttpErrorResponse) => {
+                if (error.status === 404)
+                  return of(new RedirectCommand(router.parseUrl('/404'), {replaceUrl: false}));
+                else
+                  return of(false);
+              }));
+          } else
+            return false;
+        }]
       }
     ]
   },

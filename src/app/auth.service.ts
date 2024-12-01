@@ -47,7 +47,7 @@ export class AuthService extends BaseService {
           if (error.status === 401)
             console.log("User token has expired");
           else
-            console.log(error.message);
+            console.log(error.error);
           throw error;
         })
       }));
@@ -61,7 +61,7 @@ export class AuthService extends BaseService {
       }),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409)
-            return of({ message: error.message, success: false });
+            return of({ message: error.error, success: false });
           throw error;
         }));
   }
@@ -73,20 +73,17 @@ export class AuthService extends BaseService {
       }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 409)
-          return of({ message: error.message, success: false });
+          return of({ message: error.error, success: false });
         throw error;
       }))
   }
 
-  public signout() {
+  public signOut() {
     return this.httpClient.post(this.url + "/auth/signout", null, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
       .pipe(tap(() => {
         this.cookieService.deleteCookie('TOKEN')
         this.loggedInUser.next(undefined);
-      }),
-        catchError((error: HttpErrorResponse) => {
-          throw error;
-        }));
+      }));
   }
 
   public getBookmarks() {
@@ -99,15 +96,30 @@ export class AuthService extends BaseService {
 
   public update(user: User) {
     user.role = 'CUSTOMER';
-    return this.httpClient.put<User>(this.url + "/profile/update", user, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.put<User>(this.url + "/profile/update", user, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 404)
+          alert(error.error);
+        throw error;
+      }));
   }
 
   public updateUser(user: User) {
-    return this.httpClient.put<User>(this.url + "/users/" + user.email, user, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.put<User>(this.url + "/users/" + user.email, user, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 404)
+          alert(error.error);
+        throw error;
+      }));
   }
 
   public getUser(login: string) {
-    return this.httpClient.get<User>(this.url + "/users/" + login, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.get<User>(this.url + "/users/" + login, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 404)
+          alert(error.error);
+        throw error;
+      }));
   }
 
   public getUsers() {
@@ -115,7 +127,12 @@ export class AuthService extends BaseService {
   }
 
   public deleteUser(email: string) {
-    return this.httpClient.delete<void>(this.url + `/users/${email}`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.delete<void>(this.url + `/users/${email}`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 403)
+          alert(error.error);
+        throw error;
+      }));
   }
 
   public getProfileOptionsForUser() {
