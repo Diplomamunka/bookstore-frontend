@@ -99,9 +99,11 @@ export class BookEditComponent implements OnInit {
   }
 
   handleSubmit() {
-    let tags = [];
+    let tags: string[] = [];
     if (this.bookEditForm.value.tags) {
       tags = this.bookEditForm.value.tags.split(',').map((tag: string) => tag.replace(/\s+/g, ""));
+      if (tags.length > 0 && this.bookEditForm.value.tags.length > 0)
+        tags = [this.bookEditForm.value.tags.replace(/\s+/g, "")];
       tags = tags.filter((tag: string) => tag.length > 0);
     }
     const book: Book = {
@@ -123,7 +125,7 @@ export class BookEditComponent implements OnInit {
             this.image!
           ).subscribe(() => this.router.navigate(['/books', book.id]));
         } else {
-          this.router.navigate(['/books', book.id]);
+          console.log(book);
         }
       });
     } else {

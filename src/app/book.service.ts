@@ -42,7 +42,7 @@ export class BookService extends BaseService {
       { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` }, responseType: 'text'})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
-          alert("Couldn't upload the image to the book, try again!\n" + error.error);
+          alert("Couldn't upload the image to the book, try again!");
         else if (error.status === 400)
           alert(error.error);
         throw error;
@@ -53,7 +53,7 @@ export class BookService extends BaseService {
     return this.httpClient.delete<void>(this.url + `/${id}/image`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
-          alert("Couldn't delete the image, try again later!\n" + error.error);
+          alert("Couldn't delete the image, try again later!");
         throw error;
       }))
   }
