@@ -78,8 +78,8 @@ export class BookEditComponent implements OnInit {
       });
     } else
       this.title = 'Add new book';
-    this.authorService.getAll().subscribe(authors => this.authors = authors.map(aut => aut.fullName));
-    this.categoryService.getAll().subscribe(categories => this.categories = categories.map(cat => cat.name));
+    this.authorService.getAll().subscribe(authors => this.authors = authors.map(aut => aut.fullName).sort((a, b) => a.localeCompare(b)));
+    this.categoryService.getAll().subscribe(categories => this.categories = categories.map(cat => cat.name).sort((a, b) => a.localeCompare(b)));
   }
 
   uploadFile(event: any) {
