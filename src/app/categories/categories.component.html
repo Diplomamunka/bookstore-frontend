@@ -16,3 +16,4 @@
                  [title]="category.name" [user]="user" (changedCategory)="editCategory($event, category.id!)"
   ></app-book-list>
 </section>
+<p *ngIf="!categories.length" class="text-center">No categories are available</p>

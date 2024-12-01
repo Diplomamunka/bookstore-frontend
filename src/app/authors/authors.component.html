@@ -16,3 +16,4 @@
                  [title]="author.fullName" [user]="user" (changedCategory)="editAuthor($event, author.id!)"
   ></app-book-list>
 </section>
+<p *ngIf="!authors.length" class="text-center">No authors are available</p>

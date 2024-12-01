@@ -1,5 +1,7 @@
 h1 {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
 }
 
 books {
@@ -9,11 +11,10 @@ books {
 .add-new {
   float: right;
   padding: 0.5rem;
-  margin-right: 1rem;
-  border-radius: 0.6rem;
+  margin-right: 3rem;
+  border-radius: 1rem;
   background-color: var(--secondary-color);
   transition-duration: 0.4s;
-  color: white;
 }
 
 .add-new:hover {
@@ -24,7 +25,6 @@ books {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-top: 3rem;
   padding: 3rem;
 }
 
