@@ -103,16 +103,17 @@ export class BookEditComponent implements OnInit {
       tags = this.bookEditForm.value.tags.split(',').map((tag: string) => tag.replace(/\s+/g, ""));
       tags = tags.filter((tag: string) => tag.length > 0);
     }
+    console.log(this.bookEditForm.value.shortDescription);
     const book: Book = {
       title: this.bookEditForm.value.title,
       category: {name: this.bookEditForm.value.category},
       authors: this.bookEditForm.value.authors.map((aut: string) => { return {fullName: aut}; }),
       price: this.bookEditForm.value.price,
       discount: this.bookEditForm.value.discount,
-      releaseDate: new Date(this.bookEditForm.value.releaseDate) ?? null,
+      releaseDate: this.bookEditForm.value.releaseDate ? new Date(this.bookEditForm.value.releaseDate) : undefined,
       tags: tags,
       available: this.bookEditForm.value.available,
-      shortDescription: this.bookEditForm.value.shortDescription ?? null,
+      shortDescription: this.bookEditForm.value.shortDescription.length > 0 ? this.bookEditForm.value.shortDescription : undefined,
     };
     if (!this.bookId) {
       this.bookService.createBook(book).subscribe(book => {
@@ -144,6 +145,10 @@ export class BookEditComponent implements OnInit {
       this.imageLocation = '';
       this.image = undefined;
       this.bookEditForm.get('image')?.reset();
+    } else if (this.imageLocation.length > 0 && this.bookId) {
+      this.bookService.deleteImage(this.bookId).subscribe(() => {
+        this.imageLocation = '';
+      })
     }
   }
 }

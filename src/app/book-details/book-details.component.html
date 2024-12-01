@@ -31,14 +31,14 @@
       </div>
       <div class="group">
         <h3>Tags:</h3>
-        <div *ngIf="book.tags.length > 0" class="tags">
+        <div class="tags" *ngIf="book.tags.length > 0">
           <p *ngFor="let tag of book.tags">{{tag}}</p>
-          <p *ngIf="book.tags.length === 0">No tags available!</p>
         </div>
+        <p *ngIf="book.tags.length === 0">No tags available</p>
       </div>
-      <div class="group">
-        <h3 *ngIf="book.releaseDate">Release date:</h3>
-        <p *ngIf="book.releaseDate">{{book.releaseDate.toLocaleDateString()}}</p>
+      <div class="group" *ngIf="book.releaseDate">
+        <h3>Release date:</h3>
+        <p>{{book.releaseDate.toLocaleDateString()}}</p>
       </div>
       <p class="description" *ngIf="book.shortDescription">{{book.shortDescription}}</p>
     </div>

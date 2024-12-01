@@ -49,6 +49,15 @@ export class BookService extends BaseService {
       }));
   }
 
+  deleteImage(id: bigint) {
+    return this.httpClient.delete<void>(this.url + `/${id}/image`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 500)
+          alert("Couldn't delete the image, try again later!\n" + error.error);
+        throw error;
+      }))
+  }
+
   updateBook(id: bigint, book: Book) {
     return this.httpClient.put<Book>(`${this.url}/${id}`, book, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
       .pipe(map(book => BookService.modifyBook(book)),
@@ -93,7 +102,6 @@ export class BookService extends BaseService {
   }
 
   public static modifyBook(book: Book) {
-    book.id = book.id as bigint;
     book.releaseDate = book.releaseDate ? new Date(book.releaseDate) : undefined;
     book.authors = book.authors.map(aut => AuthorService.modifyAuthor(aut));
     book.category = CategoryService.modifyCategory(book.category);
