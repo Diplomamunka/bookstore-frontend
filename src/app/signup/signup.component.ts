@@ -3,25 +3,27 @@ import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractControl, FormControl, ReactiveFormsModule, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {CustomSelectComponent} from "../custom-select/custom-select.component";
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgClass, NgForOf],
+  imports: [ReactiveFormsModule, NgIf, NgClass, NgForOf, CustomSelectComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
 export class SignupComponent implements OnInit{
   protected authService: AuthService = inject(AuthService);
   protected title: string = '';
-  protected successful: string = '';
+  protected successMessage: string = '';
+  protected success: boolean = true;
   protected submitText: string = 'Sign up';
   protected role: string = '';
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   signupForm: FormGroup = new FormGroup({
     firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
-    lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-zzáéíóöőúüű]+")]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     password2: new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -65,11 +67,10 @@ export class SignupComponent implements OnInit{
           role: this.signupForm.value.role,
         }
       ).subscribe(result => {
-        if (result.success) {
+        if (result.success)
           this.signupForm.reset();
-        } else {
-          this.successful = result.message;
-        }
+        this.successMessage = result.message;
+        this.success = result.success;
       })
     } else {
       this.authService.signup(
@@ -83,7 +84,7 @@ export class SignupComponent implements OnInit{
         if (result.success) {
           this.router.navigate(['/login']);
         } else {
-          this.successful = result.message;
+          this.successMessage = result.message;
         }
       });
     }

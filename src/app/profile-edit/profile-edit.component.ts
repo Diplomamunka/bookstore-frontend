@@ -1,15 +1,22 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AbstractControl, FormControl, ReactiveFormsModule, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {NgClass, NgIf, Location, NgForOf} from "@angular/common";
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators
+} from "@angular/forms";
+import {Location, NgClass, NgIf} from "@angular/common";
 import {User} from "../user";
 import {CustomSelectComponent} from "../custom-select/custom-select.component";
 
 @Component({
   selector: 'app-profile-edit',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgClass, NgForOf, CustomSelectComponent],
+  imports: [ReactiveFormsModule, NgIf, NgClass, CustomSelectComponent],
   templateUrl: './profile-edit.component.html',
   styleUrl: './profile-edit.component.css'
 })
@@ -21,8 +28,8 @@ export class ProfileEditComponent implements OnInit {
   protected successful: string = '';
 
   profileEditForm: FormGroup = new FormGroup({
-      firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-z]+")]),
-      lastName: new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-z]+")]),
+      firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
       email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       password2: new FormControl('', [Validators.required, Validators.minLength(8)]),

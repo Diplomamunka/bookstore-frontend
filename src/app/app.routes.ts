@@ -144,7 +144,7 @@ export const routes: Routes = [
           const authService: AuthService = inject(AuthService);
           const router: Router = inject(Router);
 
-          const loginSegment = urlSegments.find(segment => !isNaN(+segment.path));
+          const loginSegment = urlSegments[1];
           const login = loginSegment ? loginSegment.path : undefined;
 
           if (login) {
