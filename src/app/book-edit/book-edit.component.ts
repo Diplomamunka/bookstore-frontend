@@ -13,6 +13,7 @@ import {AuthorService} from "../author.service";
 import {CategoryService} from "../category.service";
 import {CustomCheckBoxSelectComponent} from "../custom-checkbox-select/custom-checkbox-select.component";
 import {Book} from "../book";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-book-edit',
@@ -73,7 +74,7 @@ export class BookEditComponent implements OnInit {
           tags: book.tags?.join(', '),
           authors: book.authors.map(aut => aut.fullName),
           category: book.category.name,
-          releaseDate: book.releaseDate ?? ''
+          releaseDate: book.releaseDate ? formatDate(book.releaseDate, "yyyy-MM-dd", "en-US") : ''
         });
       });
     } else
@@ -103,7 +104,6 @@ export class BookEditComponent implements OnInit {
       tags = this.bookEditForm.value.tags.split(',').map((tag: string) => tag.replace(/\s+/g, ""));
       tags = tags.filter((tag: string) => tag.length > 0);
     }
-    console.log(this.bookEditForm.value.shortDescription);
     const book: Book = {
       title: this.bookEditForm.value.title,
       category: {name: this.bookEditForm.value.category},
