@@ -20,8 +20,8 @@ export class SignupComponent implements OnInit{
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   signupForm: FormGroup = new FormGroup({
-    firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-z]+")]),
-    lastName: new FormControl('', [Validators.required, Validators.pattern("[A-Z][a-z]+")]),
+    firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-zzáéíóöőúüű]+")]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     password2: new FormControl('', [Validators.required, Validators.minLength(8)])
