@@ -4,10 +4,6 @@ h1 {
   margin-bottom: 2rem;
 }
 
-books {
-  display: flex;
-}
-
 .add-new {
   float: right;
   padding: 0.5rem;
@@ -23,9 +19,11 @@ books {
 
 .books {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  margin-top: 6rem;
   gap: 2rem;
-  padding: 3rem;
+  padding: 0 3rem;
 }
 
 app-book-list-element {

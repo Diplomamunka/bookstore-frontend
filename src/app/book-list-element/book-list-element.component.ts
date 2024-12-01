@@ -50,6 +50,7 @@ export class BookListElementComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['book']) {
+      console.log(this.book!.image);
       this.bookPrice = Math.round(this.book.price - this.book.price * (this.book.discount / 100));
       this.authors = this.book.authors.sort((a, b) => a.fullName.localeCompare(b.fullName));
       this.tags = this.book.tags.sort((a, b) => a.localeCompare(b));

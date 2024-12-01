@@ -83,5 +83,6 @@ input {
   pointer-events: all;
   opacity: 1;
   max-height: 500px;
+  overflow-y: scroll;
   transform: translateY(0);
 }

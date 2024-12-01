@@ -4,6 +4,7 @@ import {User} from "./user";
 import {BehaviorSubject, catchError, lastValueFrom, map, of, tap} from "rxjs";
 import {BaseService} from "./base.service";
 import {Book} from "./book";
+import {BookService} from "./book.service";
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +88,8 @@ export class AuthService extends BaseService {
   }
 
   public getBookmarks() {
-    return this.httpClient.get<Book[]>(this.url + "/profile/bookmarks", { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.get<Book[]>(this.url + "/profile/bookmarks", { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+      .pipe(map(books => books.map(book => BookService.modifyBook(book))));
   }
 
   public getRoles() {

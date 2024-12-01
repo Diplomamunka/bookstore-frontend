@@ -20,19 +20,13 @@ export class BookService extends BaseService {
   getAllBooks() {
     return this.httpClient.get<Book[]>(this.url).pipe(
       map(books => {
-        return books.map(book => {
-          book.image = `${this.url}/${book.id}/image`;
-          return BookService.modifyBook(book);
-        });
+        return books.map(book => BookService.modifyBook(book));
       })
     );
   }
 
   getBook(id: bigint) {
-    return this.httpClient.get<Book>(this.url + `/${id}`).pipe(map(book => {
-      book.image = `${this.url}/${id}/image`;
-      return BookService.modifyBook(book);
-    }));
+    return this.httpClient.get<Book>(this.url + `/${id}`).pipe(map(book => BookService.modifyBook(book)));
   }
 
   uploadImage(id: bigint, file: File) {
@@ -102,6 +96,7 @@ export class BookService extends BaseService {
   }
 
   public static modifyBook(book: Book) {
+    book.image = `http://localhost:8080/api/books/${book.id}/image`;
     book.releaseDate = book.releaseDate ? new Date(book.releaseDate) : undefined;
     book.authors = book.authors.map(aut => AuthorService.modifyAuthor(aut));
     book.category = CategoryService.modifyCategory(book.category);
