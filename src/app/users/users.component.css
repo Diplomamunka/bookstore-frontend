@@ -5,11 +5,20 @@
   margin-right: 1rem;
 }
 
+.users-header {
+  margin-top: 6rem;
+  padding: 0;
+}
+
 section {
   padding-top: 2rem;
 }
 
-.users-header {
+section h1 {
+  font-size: 2em;
+}
+
+.users-add-new {
   display: flex;
   justify-content: flex-end;
   padding: 2rem;

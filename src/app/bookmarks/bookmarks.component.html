@@ -1,8 +1,10 @@
-<h1>Bookmarks</h1>
-<section class="bookmarks">
-  <app-book-list-element *ngFor="let book of bookmarks" [disableScaling]="true"
-                         (bookmarkDeleted)="handleBookmarkDelete(book.id!)" [book]="book"
-                         (bookDeleted)="handleBookDelete(book.id!)"
-  />
+<section class="bookmarks-wrapper">
+  <h1>Bookmarks</h1>
+  <section class="bookmarks">
+    <app-book-list-element *ngFor="let book of bookmarks" [disableScaling]="true"
+                           (bookmarkDeleted)="handleBookmarkDelete(book.id!)" [book]="book"
+                           (bookDeleted)="handleBookDelete(book.id!)"
+    />
+  </section>
+  <p *ngIf="bookmarks.length === 0">You don't have any bookmarks yet!</p>
 </section>
-<p *ngIf="bookmarks.length === 0">You don't have any bookmarks yet!</p>

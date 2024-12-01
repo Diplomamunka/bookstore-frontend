@@ -1,8 +1,11 @@
 <section class="users-header">
-  <a class="add-new" [routerLink]="['/signup']" [queryParams]="{ add_new: true }">
-    <i class="fa fa-plus"></i>
-    Add new user
-  </a>
+  <h1>Users</h1>
+  <div class="users-add-new">
+    <a class="add-new" [routerLink]="['/signup']" [queryParams]="{ add_new: true }">
+      <i class="fa fa-plus"></i>
+      Add new user
+    </a>
+  </div>
 </section>
 <section class="users-container">
   <section *ngFor="let user of users" class="user">
