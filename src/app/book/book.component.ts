@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
+import {RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {Book} from "../book";
 import {Author} from "../author";

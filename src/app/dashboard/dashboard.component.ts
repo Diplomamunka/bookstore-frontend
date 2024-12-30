@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from "@angular/core";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {NgForOf} from "@angular/common";
@@ -17,12 +17,12 @@ import {NgForOf} from "@angular/common";
 })
 export class DashboardComponent implements OnInit {
   protected authService: AuthService = inject(AuthService);
-  protected options: {option: string, url: string}[] = [];
+  protected options: { option: string, url: string }[] = [];
 
   ngOnInit() {
     this.authService.loggedInUser.subscribe(() => {
-        this.options = this.authService.getProfileOptionsForUser();
-        this.options.unshift({ option: 'Personal Information', url: 'profile' });
+      this.options = this.authService.getProfileOptionsForUser();
+      this.options.unshift({option: 'Personal Information', url: 'profile'});
     });
   }
 }

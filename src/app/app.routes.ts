@@ -5,9 +5,9 @@ import {
   RouterStateSnapshot,
   Routes, UrlSegment,
   UrlTree
-} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {BookDetailsComponent} from './book-details/book-details.component';
+} from "@angular/router";
+import {HomeComponent} from "./home/home.component";
+import {BookDetailsComponent} from "./book-details/book-details.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {LoginComponent} from "./login/login.component";
 import {BookEditComponent} from "./book-edit/book-edit.component";
@@ -40,7 +40,7 @@ export const routes: Routes = [
     component: BookEditComponent,
     title: 'New Book - Boulevard of Chapters',
     canActivate: [AuthGuardService],
-    data: { requiredRoles: ['ADMIN', 'STAFF'] }
+    data: {requiredRoles: ['ADMIN', 'STAFF']}
   },
   {
     path: 'books/:id/edit',
@@ -48,7 +48,7 @@ export const routes: Routes = [
     title: 'Book Edit - Boulevard of Chapters',
     canActivate: [AuthGuardService],
     canMatch: [CanMatchBookService],
-    data: { requiredRoles: ['ADMIN', 'STAFF'] }
+    data: {requiredRoles: ['ADMIN', 'STAFF']}
   },
   {
     path: 'books/:id',
@@ -75,12 +75,12 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     title: 'Sign In - Boulevard of Chapters',
-    canActivate: [(route:ActivatedRouteSnapshot, state:RouterStateSnapshot) => {
+    canActivate: [(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
       const authService: AuthService = inject(AuthService);
 
       if (authService.loggedInUser.getValue()) {
         const urlTree: UrlTree = route.root.component === null ? createUrlTreeFromSnapshot(route, ['/']) : createUrlTreeFromSnapshot(route, ['.']);
-        return new RedirectCommand(urlTree, { replaceUrl: true });
+        return new RedirectCommand(urlTree, {replaceUrl: true});
       } else {
         return true;
       }
@@ -90,7 +90,7 @@ export const routes: Routes = [
     path: 'signup',
     component: SignupComponent,
     title: 'Sign Up - Boulevard of Chapters',
-    canActivate: [(route:ActivatedRouteSnapshot, state:RouterStateSnapshot) => {
+    canActivate: [(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
       const authService: AuthService = inject(AuthService);
       const currentUser: User | undefined = authService.loggedInUser.getValue();
 
@@ -98,7 +98,7 @@ export const routes: Routes = [
         return true;
       } else {
         const urlTree: UrlTree = route.root.component === null ? createUrlTreeFromSnapshot(route, ['/']) : createUrlTreeFromSnapshot(route, ['.']);
-        return new RedirectCommand(urlTree, { replaceUrl: true });
+        return new RedirectCommand(urlTree, {replaceUrl: true});
       }
     }]
   },
@@ -111,35 +111,35 @@ export const routes: Routes = [
         component: ProfileComponent,
         title: 'Profile - Boulevard of Chapters',
         canActivate: [AuthGuardService],
-        data: { requiredRoles: ['CUSTOMER', 'STAFF', 'ADMIN'] }
+        data: {requiredRoles: ['CUSTOMER', 'STAFF', 'ADMIN']}
       },
       {
         path: 'profile/edit',
         component: ProfileEditComponent,
         title: 'Edit profile - Boulevard of Chapters',
         canActivate: [AuthGuardService],
-        data: { requiredRoles: ['CUSTOMER', 'STAFF', 'ADMIN'] }
+        data: {requiredRoles: ['CUSTOMER', 'STAFF', 'ADMIN']}
       },
       {
         path: 'profile/bookmarks',
         component: BookmarksComponent,
         title: 'Bookmarks - Boulevard of Chapters',
         canActivate: [AuthGuardService],
-        data: { requiredRoles: ['CUSTOMER', 'STAFF', 'ADMIN'] }
+        data: {requiredRoles: ['CUSTOMER', 'STAFF', 'ADMIN']}
       },
       {
         path: 'users',
         component: UsersComponent,
         title: 'Manage users - Boulevard of Chapters',
         canActivate: [AuthGuardService],
-        data: { requiredRoles: ['ADMIN'] }
+        data: {requiredRoles: ['ADMIN']}
       },
       {
         path: 'users/:login/edit',
         component: ProfileEditComponent,
         title: 'Edit user - Boulevard of Chapters',
         canActivate: [AuthGuardService],
-        data: { requiredRoles: ['ADMIN'] },
+        data: {requiredRoles: ['ADMIN']},
         canMatch: [(route: Route, urlSegments: UrlSegment[]) => {
           const authService: AuthService = inject(AuthService);
           const router: Router = inject(Router);

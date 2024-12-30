@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {BaseService} from "./base.service";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
@@ -18,7 +18,7 @@ export class CategoryService extends BaseService {
   }
 
   deleteAllBooks(id: bigint) {
-    return this.httpClient.delete<void>(`${this.url}/${id}/books`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.delete<void>(`${this.url}/${id}/books`, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
           alert("Could not delete, because of one of the books caused an internal server error!");
@@ -37,7 +37,7 @@ export class CategoryService extends BaseService {
   }
 
   new(category: Category) {
-    return this.httpClient.post<Category>(this.url, category, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.post<Category>(this.url, category, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(category => CategoryService.modifyCategory(category)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409)
@@ -47,7 +47,7 @@ export class CategoryService extends BaseService {
   }
 
   update(id: bigint, category: Category) {
-    return this.httpClient.put<Category>(`${this.url}/${id}`, category, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.put<Category>(`${this.url}/${id}`, category, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(category => CategoryService.modifyCategory(category)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409)
@@ -59,7 +59,7 @@ export class CategoryService extends BaseService {
   }
 
   delete(id: bigint) {
-    return this.httpClient.delete<void>(`${this.url}/${id}`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.delete<void>(`${this.url}/${id}`, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 409)
           alert(error.error);

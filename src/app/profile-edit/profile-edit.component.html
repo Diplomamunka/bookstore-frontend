@@ -8,7 +8,7 @@
       <input id="lastName" type="text" formControlName="lastName" placeholder="Doe"/>
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" placeholder="john.doe@example.com"/>
-      <p [ngClass]="{'invalid': successful !== ''}">{{successful}}</p>
+      <p [ngClass]="{'invalid': successful !== ''}">{{ successful }}</p>
       <label for="password">Password</label>
       <input id="password" type="password" formControlName="password" title="Must be at least 8 characters long!"/>
       <label for="password2">Re-type password</label>

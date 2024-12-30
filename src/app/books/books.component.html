@@ -4,6 +4,7 @@
   Add new
 </a>
 <section class="books">
-  <app-book-list-element *ngFor="let book of books" [disableScaling]="true" [book]="book" (bookDeleted)="handleBookDelete(book.id!)"/>
+  <app-book-list-element *ngFor="let book of books" [disableScaling]="true" [book]="book"
+                         (bookDeleted)="handleBookDelete(book.id!)"/>
 </section>
 <p *ngIf="!books.length" class="text-center">No books are available</p>

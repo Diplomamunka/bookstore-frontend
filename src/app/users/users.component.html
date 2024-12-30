@@ -11,10 +11,10 @@
   <section *ngFor="let user of users" class="user">
     <div class="user-content">
       <div class="email-role">
-        <p>{{user.email}}</p>
-        <p class="role">{{user.role}}</p>
+        <p>{{ user.email }}</p>
+        <p class="role">{{ user.role }}</p>
       </div>
-      <p class="name">{{user.firstName + ' ' + user.lastName}}</p>
+      <p class="name">{{ user.firstName + ' ' + user.lastName }}</p>
     </div>
     <div class="icons">
       <a [routerLink]="['/users', user.email, 'edit']" class="edit">

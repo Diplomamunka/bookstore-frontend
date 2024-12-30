@@ -1,30 +1,35 @@
 <section class="custom-select-wrapper">
   <div class="custom-select">
-    <div class="input-button" [ngClass]="{'showing-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
+    <div class="input-button"
+         [ngClass]="{'showing-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
       <div class="tags-input-wrapper">
         <div *ngFor="let item of addedOptions" class="selected-tags">
           {{ item }}
           <span class="remove-tag" (click)="removeSelectedItem(item)">×</span>
         </div>
-        <input type="text" [disabled]="disabled" [(ngModel)]="query" (input)="onInput()" (keydown)="onKeyDown($event)" class="select-input" placeholder="Start typing..."/>
+        <input type="text" [disabled]="disabled" [(ngModel)]="query" (input)="onInput()" (keydown)="onKeyDown($event)"
+               class="select-input" placeholder="Start typing..."/>
       </div>
 
       <button type="button" class="show-all-button" (click)="toggleSuggestions()" title="options">
         <i class="fa fa-caret-down"></i>
       </button>
     </div>
-    <div id="suggestion-wrapper" class="suggestion-wrapper" [ngClass]="{'show-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
+    <div id="suggestion-wrapper" class="suggestion-wrapper"
+         [ngClass]="{'show-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
       <div id="suggestion-list-container" class="suggestion-list-container">
         <ul class="suggestion-list">
-          <li *ngFor="let option of filteredOptions; let i = index" (click)="toggleItem(option)" [ngClass]="{'highlighted': i === highlightedIndex}">
+          <li *ngFor="let option of filteredOptions; let i = index" (click)="toggleItem(option)"
+              [ngClass]="{'highlighted': i === highlightedIndex}">
             <input type="checkbox" [disabled]="disabled" [checked]="selectedOptions.includes(option)"/>
-            {{option}}
+            {{ option }}
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <a [ngClass]="{'invisible': selectedOptions.length == 0}" (click)="showSelectedOptions()" class="selected-options-value">
-    ({{selectedOptions.length}})
+  <a [ngClass]="{'invisible': selectedOptions.length == 0}" (click)="showSelectedOptions()"
+     class="selected-options-value">
+    ({{ selectedOptions.length }})
   </a>
 </section>

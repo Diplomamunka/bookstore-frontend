@@ -1,22 +1,26 @@
 <section class="custom-select">
-  <div class="input-button" [ngClass]="{'showing-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
+  <div class="input-button"
+       [ngClass]="{'showing-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
     <div class="tag-input-wrapper">
       <div *ngIf="selectedOption.length > 0" class="selected-tag">
         {{ selectedOption }}
         <span class="remove-tag" (click)="removeSelectedItem()">×</span>
       </div>
-      <input id="search" type="text" [disabled]="disabled" (input)="onInput()" (keydown)="onKeyDown($event)" class="select-input" placeholder="Start typing..."/>
+      <input id="search" type="text" [disabled]="disabled" (input)="onInput()" (keydown)="onKeyDown($event)"
+             class="select-input" placeholder="Start typing..."/>
     </div>
 
     <button type="button" class="show-all-button" (click)="toggleSuggestions()" title="options">
       <i class="fa fa-caret-down"></i>
     </button>
   </div>
-  <div id="suggestion-wrapper" class="suggestion-wrapper" [ngClass]="{'show-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
+  <div id="suggestion-wrapper" class="suggestion-wrapper"
+       [ngClass]="{'show-suggestion-list': (showSearched || showSuggestionList) && filteredOptions.length > 0}">
     <div id="suggestion-list-container" class="suggestion-list-container">
       <ul class="suggestion-list">
-        <li *ngFor="let option of filteredOptions; let i = index" (click)="selectItem(option)" [ngClass]="{'highlighted': i === highlightedIndex}">
-          {{option}}
+        <li *ngFor="let option of filteredOptions; let i = index" (click)="selectItem(option)"
+            [ngClass]="{'highlighted': i === highlightedIndex}">
+          {{ option }}
         </li>
       </ul>
     </div>

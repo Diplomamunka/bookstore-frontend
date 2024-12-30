@@ -1,55 +1,57 @@
 <main>
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <a [routerLink]="['/']">
-              <img class="store-logo" src="assets/logo.png" alt="logo" aria-hidden="true"/>
-              <h1>{{title}}</h1>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/books']">
-              Books
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/categories']">
-              Categories
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/authors']">
-              Authors
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="non-authenticated" *ngIf="cookieService.getCookie('TOKEN') === ''">
-        <a [routerLink]="['/signup']">Sign Up</a>
-        <a [routerLink]="['/login']">Sign In</a>
-      </div>
-      <div class="authenticated" *ngIf="cookieService.getCookie('TOKEN')">
-        <div class="relative">
-          <div class="profile-container">
-            <a class="profile" [ngClass]="{'showing-dropDown':showDropDown}" [routerLink]="['/profile']">{{user?.firstName}} {{user?.lastName}}</a>
-            <button [ngClass]="{'showing-dropDown': showDropDown}" type="button" (click)="toggleProfileOptions(); $event.stopPropagation()" class="profileDropDown" title="DropDown">
-              <i class="fa fa-caret-down"></i>
-            </button>
-          </div>
-          <div [ngClass]="{'show-dropDown':showDropDown}" class="dropDownContent">
-            <ul>
-              <li *ngFor="let option of profileOptions" [routerLink]="[option.url]">
-                {{option.option}}
-              </li>
-            </ul>
-          </div>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a [routerLink]="['/']">
+            <img class="store-logo" src="assets/logo.png" alt="logo" aria-hidden="true"/>
+            <h1>{{ title }}</h1>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/books']">
+            Books
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/categories']">
+            Categories
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/authors']">
+            Authors
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="non-authenticated" *ngIf="cookieService.getCookie('TOKEN') === ''">
+      <a [routerLink]="['/signup']">Sign Up</a>
+      <a [routerLink]="['/login']">Sign In</a>
+    </div>
+    <div class="authenticated" *ngIf="cookieService.getCookie('TOKEN')">
+      <div class="relative">
+        <div class="profile-container">
+          <a class="profile" [ngClass]="{'showing-dropDown':showDropDown}"
+             [routerLink]="['/profile']">{{ user?.firstName }} {{ user?.lastName }}</a>
+          <button [ngClass]="{'showing-dropDown': showDropDown}" type="button"
+                  (click)="toggleProfileOptions(); $event.stopPropagation()" class="profileDropDown" title="DropDown">
+            <i class="fa fa-caret-down"></i>
+          </button>
         </div>
-        <button type="button" class="sign-out" title="Sign out" (click)="handleSignOut()">
-          <i class="fa fa-sign-out"></i>
-        </button>
+        <div [ngClass]="{'show-dropDown':showDropDown}" class="dropDownContent">
+          <ul>
+            <li *ngFor="let option of profileOptions" [routerLink]="[option.url]">
+              {{ option.option }}
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
+      <button type="button" class="sign-out" title="Sign out" (click)="handleSignOut()">
+        <i class="fa fa-sign-out"></i>
+      </button>
+    </div>
+  </header>
   <section class="content">
     <router-outlet></router-outlet>
   </section>

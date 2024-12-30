@@ -1,4 +1,4 @@
-import {Component, HostListener, inject, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from "@angular/core";
 import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {CookieService} from "./cookie.service";
@@ -13,20 +13,19 @@ import {AuthService} from "./auth.service";
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  protected cookieService: CookieService = inject(CookieService);
-  protected authService: AuthService = inject(AuthService);
   protected user: User | undefined;
   protected showDropDown: boolean = false;
   protected profileOptions: { option: string, url: string }[] = [];
   title = 'Boulevard of Chapters'
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, protected cookieService: CookieService, private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (this.cookieService.getCookie('TOKEN')) {
-          this.authService.logInSavedUser().subscribe(user => {
+          this.authService.loggedInUser.subscribe(user => {
             this.user = user;
             this.profileOptions = this.authService.getProfileOptionsForUser();
           });

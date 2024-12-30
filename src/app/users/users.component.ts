@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {NgForOf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {AuthService} from "../auth.service";
@@ -15,8 +15,10 @@ import {User} from "../user";
   styleUrl: './users.component.css'
 })
 export class UsersComponent implements OnInit {
-  protected authService: AuthService = inject(AuthService);
   protected users: User[] = [];
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.authService.getUsers().subscribe(users => this.users = users);

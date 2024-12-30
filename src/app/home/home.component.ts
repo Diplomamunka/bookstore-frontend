@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {BookComponent} from '../book/book.component';
-import {CommonModule} from '@angular/common';
-import {Book} from '../book';
-import {BookService} from '../book.service';
+import {Component, OnInit} from "@angular/core";
+import {BookComponent} from "../book/book.component";
+import {CommonModule} from "@angular/common";
+import {Book} from "../book";
+import {BookService} from "../book.service";
 import {debounceTime, of, Subject, switchMap} from "rxjs";
 
 @Component({
@@ -15,8 +15,10 @@ import {debounceTime, of, Subject, switchMap} from "rxjs";
 export class HomeComponent implements OnInit {
   protected bookList: Book[] = [];
   protected filteredBookList: Book[] = [];
-  private bookService: BookService = inject(BookService);
   private searchSubject: Subject<string> = new Subject();
+
+  constructor(private bookService: BookService) {
+  }
 
   ngOnInit() {
     this.bookService.getAllBooks().subscribe(books => {
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   filterBooks(query: string) {
     return of(this.bookList.filter(book => book.title.toLowerCase().includes(query.toLowerCase())
-    || book.authors.filter(author => author.fullName.toLowerCase().includes(query.toLowerCase())).length > 0));
+      || book.authors.filter(author => author.fullName.toLowerCase().includes(query.toLowerCase())).length > 0));
   }
 
   onInput(query: string) {

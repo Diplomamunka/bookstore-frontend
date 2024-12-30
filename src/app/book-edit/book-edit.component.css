@@ -51,6 +51,7 @@ input[type="number"] {
   left: 0;
   opacity: 0;
 }
+
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {
   position: relative;

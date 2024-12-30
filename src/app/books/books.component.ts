@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {RouterLink} from "@angular/router";
 import {BookListElementComponent} from "../book-list-element/book-list-element.component";
 import {Book} from "../book";
@@ -23,7 +23,8 @@ export class BooksComponent implements OnInit {
   protected books!: Book[];
   protected user: User | undefined;
 
-  constructor(private bookService: BookService, private authService: AuthService) {}
+  constructor(private bookService: BookService, private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.bookService.getAllBooks().subscribe(books => this.books = books);

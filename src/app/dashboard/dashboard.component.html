@@ -1,7 +1,8 @@
 <section class="sidebar">
   <ul>
-    <li *ngFor="let option of options" [routerLink]="option.url" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-      {{option.option}}
+    <li *ngFor="let option of options" [routerLink]="option.url" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">
+      {{ option.option }}
     </li>
   </ul>
 </section>

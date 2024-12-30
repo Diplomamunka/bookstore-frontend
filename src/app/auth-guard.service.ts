@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivate,
   GuardResult,
-  MaybeAsync, RedirectCommand,
+  MaybeAsync,
+  RedirectCommand,
   Router,
   RouterStateSnapshot
 } from "@angular/router";
@@ -23,7 +24,7 @@ export class AuthGuardService implements CanActivate {
     const currentUser: User | undefined = this.authService.loggedInUser.getValue();
 
     if (!currentUser) {
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
       return false;
     } else if (requiredRoles.includes(currentUser.role!)) {
       return true;

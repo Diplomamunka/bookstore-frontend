@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {BookListComponent} from "../book-list/book-list.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -21,14 +21,15 @@ import {Author} from "../author";
   styleUrl: './authors.component.css'
 })
 export class AuthorsComponent implements OnInit {
-  protected authorService: AuthorService = inject(AuthorService);
-  protected authService: AuthService = inject(AuthService);
   protected authors!: Author[];
   protected user: User | undefined;
 
   addForm: FormGroup = new FormGroup({
     author: new FormControl('', Validators.required)
   });
+
+  constructor(private authService: AuthService, protected authorService: AuthorService) {
+  }
 
   ngOnInit() {
     this.authorService.getAll().subscribe(authors => this.authors = authors.sort((a, b) => a.fullName.localeCompare(b.fullName)));

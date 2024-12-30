@@ -1,11 +1,12 @@
 <section>
-  <h1>{{title}}</h1>
+  <h1>{{ title }}</h1>
   <form [formGroup]="bookEditForm" (ngSubmit)="handleSubmit()" class="book-edit-form">
     <div class="image">
       <img [src]="imageLocation" alt="Book image" (error)="imageLocation = '/assets/no_available_image.jpg'"/>
       <div class="image-input">
         <label for="image" class="custom-photo-input">
-          <input id="image" type="file" accept="image/jpeg, image/png, image/webp, image/svg+xml" formControlName="image" (change)="uploadFile($event)" alt="">
+          <input id="image" type="file" accept="image/jpeg, image/png, image/webp, image/svg+xml"
+                 formControlName="image" (change)="uploadFile($event)" alt="">
           Upload image
         </label>
         <button class="delete-button" type="button" title="Delete image" (click)="deleteImage()">
@@ -47,6 +48,8 @@
     <input id="tags" type="text" formControlName="tags"/>
     <label for="shortDescription">Short description</label>
     <textarea id="shortDescription" formControlName="shortDescription" maxlength="1000"></textarea>
-    <button class="submit-button" type="submit" [disabled]="!bookEditForm.valid" (submit)="handleSubmit()">{{ submitButton }}</button>
+    <button class="submit-button" type="submit" [disabled]="!bookEditForm.valid"
+            (submit)="handleSubmit()">{{ submitButton }}
+    </button>
   </form>
 </section>

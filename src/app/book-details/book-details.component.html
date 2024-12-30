@@ -1,17 +1,21 @@
 <article>
   <div class="header">
-    <h1>{{book.title}}</h1>
+    <h1>{{ book.title }}</h1>
     <div class="book-buttons">
       <a [routerLink]="['/books', book.id, 'edit']" *ngIf="user && user?.role !== 'CUSTOMER'" class="edit">
         <i class="fa fa-edit"></i>
       </a>
-      <button type="button" class="delete-button" title="Delete" *ngIf="user && user?.role !== 'CUSTOMER'" (click)="handleDelete()">
+      <button type="button" class="delete-button" title="Delete" *ngIf="user && user?.role !== 'CUSTOMER'"
+              (click)="handleDelete()">
         <i class="fa-solid fa-trash"></i>
         Delete
       </button>
-      <button type="button" (mouseenter)="bookmarkHovered = true" (mouseleave)="bookmarkHovered = false" class="bookmark-button" title="Bookmark" *ngIf="user" (click)="bookMarkBook()">
-        <i class="fa-solid fa-bookmark" [ngClass]="{'show-bookmark': (bookmarked && !bookmarkHovered) || (!bookmarked && bookmarkHovered)}"></i>
-        <i class="fa-regular fa-bookmark" [ngClass]="{'show-bookmark': (!bookmarked && !bookmarkHovered) || (bookmarked && bookmarkHovered)}"></i>
+      <button type="button" (mouseenter)="bookmarkHovered = true" (mouseleave)="bookmarkHovered = false"
+              class="bookmark-button" title="Bookmark" *ngIf="user" (click)="bookMarkBook()">
+        <i class="fa-solid fa-bookmark"
+           [ngClass]="{'show-bookmark': (bookmarked && !bookmarkHovered) || (!bookmarked && bookmarkHovered)}"></i>
+        <i class="fa-regular fa-bookmark"
+           [ngClass]="{'show-bookmark': (!bookmarked && !bookmarkHovered) || (bookmarked && bookmarkHovered)}"></i>
       </button>
     </div>
   </div>
@@ -21,32 +25,32 @@
     <div class="book-info">
       <div class="group">
         <h3>Category:</h3>
-        <p>{{book.category.name}}</p>
+        <p>{{ book.category.name }}</p>
       </div>
       <div class="group">
-        <h3>{{book.authors.length > 1 ? 'Authors:' : 'Author:'}}</h3>
+        <h3>{{ book.authors.length > 1 ? 'Authors:' : 'Author:' }}</h3>
         <div class="authors">
-          <p *ngFor="let author of book.authors">{{author.fullName}}</p>
+          <p *ngFor="let author of book.authors">{{ author.fullName }}</p>
         </div>
       </div>
       <div class="group">
         <h3>Tags:</h3>
         <div class="tags" *ngIf="book.tags.length > 0">
-          <p *ngFor="let tag of book.tags">{{tag}}</p>
+          <p *ngFor="let tag of book.tags">{{ tag }}</p>
         </div>
         <p *ngIf="book.tags.length === 0">No tags available</p>
       </div>
       <div class="group" *ngIf="book.releaseDate">
         <h3>Release date:</h3>
-        <p>{{book.releaseDate.toLocaleDateString()}}</p>
+        <p>{{ book.releaseDate.toLocaleDateString() }}</p>
       </div>
-      <p class="description" *ngIf="book.shortDescription">{{book.shortDescription}}</p>
+      <p class="description" *ngIf="book.shortDescription">{{ book.shortDescription }}</p>
     </div>
     <div class="book-pricing">
-      <p [ngClass]="{'invisible': book.discount === 0}" class="discount">-{{book.discount}}%</p>
-      <p>{{bookPrice}} HUF</p>
+      <p [ngClass]="{'invisible': book.discount === 0}" class="discount">-{{ book.discount }}%</p>
+      <p>{{ bookPrice }} HUF</p>
       <p [ngClass]="{'text-green-500': book.available, 'text-red-600': !book.available}">
-        {{book.available ? 'Available' : 'Not available'}}
+        {{ book.available ? 'Available' : 'Not available' }}
       </p>
     </div>
   </section>

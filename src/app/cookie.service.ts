@@ -1,12 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CookieService {
-
-  constructor() { }
-
   public getCookie(name: string) {
     let ca: Array<string> = document.cookie.split(';');
     let cookieName = `${name}=`;
@@ -32,6 +29,4 @@ export class CookieService {
     let cpath: string = path ? `; path=${path}` : '';
     document.cookie = `${name}=${value}; ${expires}${cpath}`;
   }
-
-
 }

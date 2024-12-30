@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {BaseService} from "./base.service";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
 import {Book} from "./book";
 import {Author} from "./author";
-import {catchError, map, of} from "rxjs";
+import {catchError, map} from "rxjs";
 import {BookService} from "./book.service";
 
 @Injectable({
@@ -23,7 +23,7 @@ export class AuthorService extends BaseService {
   }
 
   new(author: Author) {
-    return this.httpClient.post<Author>(this.url, author, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.post<Author>(this.url, author, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(author => AuthorService.modifyAuthor(author)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409)
@@ -42,7 +42,7 @@ export class AuthorService extends BaseService {
   }
 
   update(id: bigint, author: Author) {
-    return this.httpClient.put<Author>(`${this.url}/${id}`, author, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.put<Author>(`${this.url}/${id}`, author, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(author => AuthorService.modifyAuthor(author)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409)
@@ -54,7 +54,7 @@ export class AuthorService extends BaseService {
   }
 
   deleteAllBooks(id: bigint) {
-    return this.httpClient.delete<void>(`${this.url}/${id}/books`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.delete<void>(`${this.url}/${id}/books`, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
           alert("Could not delete, because of one of the books caused an internal server error!");

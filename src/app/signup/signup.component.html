@@ -1,6 +1,7 @@
 <section>
-  <h1>{{title}}</h1>
-  <p [ngClass]="{'invalid': !success && successMessage !== '', 'valid': success && successMessage !== ''}">{{successMessage}}</p>
+  <h1>{{ title }}</h1>
+  <p
+    [ngClass]="{'invalid': !success && successMessage !== '', 'valid': success && successMessage !== ''}">{{ successMessage }}</p>
   <div class="form-container">
     <form [formGroup]="signupForm" (ngSubmit)="handleSignUp()" class="signup-form">
       <label for="firstName">First Name</label>
@@ -21,7 +22,7 @@
           <app-custom-select [options]="authService.getRoles()" formControlName="role"/>
         </label>
       </div>
-      <button type="submit" (submit)="handleSignUp()" [disabled]="!signupForm.valid">{{submitText}}</button>
+      <button type="submit" (submit)="handleSignUp()" [disabled]="!signupForm.valid">{{ submitText }}</button>
     </form>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {CategoryService} from "../category.service";
 import {BookListComponent} from "../book-list/book-list.component";
 import {NgForOf, NgIf} from "@angular/common";
@@ -21,14 +21,15 @@ import {AuthService} from "../auth.service";
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit {
-  protected categoryService: CategoryService = inject(CategoryService);
-  protected authService: AuthService = inject(AuthService);
   protected categories!: Category[];
   protected user: User | undefined;
 
   addForm: FormGroup = new FormGroup({
     category: new FormControl('', Validators.required)
   });
+
+  constructor(private authService: AuthService, protected categoryService: CategoryService) {
+  }
 
   ngOnInit() {
     this.categoryService.getAll().subscribe(categories => this.categories = categories.sort((a, b) => a.name.localeCompare(b.name)));

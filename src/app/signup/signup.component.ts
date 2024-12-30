@@ -1,39 +1,44 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AbstractControl, FormControl, ReactiveFormsModule, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators
+} from "@angular/forms";
+import {NgClass, NgIf} from "@angular/common";
 import {CustomSelectComponent} from "../custom-select/custom-select.component";
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgClass, NgForOf, CustomSelectComponent],
+  imports: [ReactiveFormsModule, NgIf, NgClass, CustomSelectComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
-export class SignupComponent implements OnInit{
-  protected authService: AuthService = inject(AuthService);
+export class SignupComponent implements OnInit {
   protected title: string = '';
   protected successMessage: string = '';
   protected success: boolean = true;
   protected submitText: string = 'Sign up';
   protected role: string = '';
-  private route: ActivatedRoute = inject(ActivatedRoute);
 
   signupForm: FormGroup = new FormGroup({
-    firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
-    lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    password2: new FormControl('', [Validators.required, Validators.minLength(8)])
+      firstName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password2: new FormControl('', [Validators.required, Validators.minLength(8)])
     },
     (control: AbstractControl): ValidationErrors | null => {
       return control.value.password === control.value.password2 ? null : {PasswordNoMatch: true};
     }
   );
 
-  constructor(private router: Router) {
+  constructor(private router: Router, protected authService: AuthService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {

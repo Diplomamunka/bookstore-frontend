@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {debounceTime, of, Subject, switchMap} from "rxjs";
 import {NgClass, NgForOf} from "@angular/common";
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
@@ -156,12 +156,15 @@ export class CustomCheckBoxSelectComponent implements OnInit, OnChanges, Control
   writeValue(options: string[]): void {
     this.selectedOptions = options;
   }
+
   registerOnChange(onChange: any): void {
     this.onChange = onChange;
   }
+
   registerOnTouched(onTouched: any): void {
     this.onTouched = onTouched;
   }
+
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
   }

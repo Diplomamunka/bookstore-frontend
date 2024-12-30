@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {CanMatch, GuardResult, MaybeAsync, RedirectCommand, Route, Router, UrlSegment} from "@angular/router";
 import {BookService} from "./book.service";
 import {catchError, map, of} from "rxjs";
@@ -27,7 +27,7 @@ export class CanMatchBookService implements CanMatch {
         ));
     } else
       return false;
-    }
+  }
 }
 
 

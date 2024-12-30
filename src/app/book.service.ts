@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Book} from './book';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from "@angular/core";
+import {Book} from "./book";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, map} from "rxjs";
 import {CookieService} from "./cookie.service";
 import {BaseService} from "./base.service";
@@ -33,7 +33,7 @@ export class BookService extends BaseService {
     let formData = new FormData();
     formData.append('image', file);
     return this.httpClient.post(this.url + `/${id}/image`, formData,
-      { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` }, responseType: 'text'})
+      {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}, responseType: 'text'})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
           alert("Couldn't upload the image to the book, try again!");
@@ -44,7 +44,7 @@ export class BookService extends BaseService {
   }
 
   deleteImage(id: bigint) {
-    return this.httpClient.delete<void>(this.url + `/${id}/image`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
+    return this.httpClient.delete<void>(this.url + `/${id}/image`, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
           alert("Couldn't delete the image, try again later!");
@@ -53,7 +53,7 @@ export class BookService extends BaseService {
   }
 
   updateBook(id: bigint, book: Book) {
-    return this.httpClient.put<Book>(`${this.url}/${id}`, book, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.put<Book>(`${this.url}/${id}`, book, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(book => BookService.modifyBook(book)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404)
@@ -63,7 +63,7 @@ export class BookService extends BaseService {
   }
 
   createBook(book: Book) {
-    return this.httpClient.post<Book>(this.url, book, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.post<Book>(this.url, book, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(book => BookService.modifyBook(book)),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404)
@@ -73,7 +73,7 @@ export class BookService extends BaseService {
   }
 
   deleteBook(id: bigint) {
-    return this.httpClient.delete<void>(this.url + `/${id}`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.delete<void>(this.url + `/${id}`, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(catchError((error: HttpErrorResponse) => {
         if (error.status === 500)
           alert("Couldn't delete book!");
@@ -82,7 +82,7 @@ export class BookService extends BaseService {
   }
 
   addBookmark(id: bigint) {
-    return this.httpClient.post<Book[]>(this.url + `/${id}/bookmark`, null,  { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } })
+    return this.httpClient.post<Book[]>(this.url + `/${id}/bookmark`, null, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
       .pipe(map(books => books.map(book => BookService.modifyBook(book))),
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404)
@@ -92,7 +92,7 @@ export class BookService extends BaseService {
   }
 
   deleteBookmark(id: bigint) {
-    return this.httpClient.delete<void>(this.url + `/${id}/bookmark`, { headers: { 'Authorization': `${this.cookieService.getCookie('TOKEN')}` } });
+    return this.httpClient.delete<void>(this.url + `/${id}/bookmark`, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}});
   }
 
   public static modifyBook(book: Book) {

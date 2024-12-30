@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
 import {Book} from "../book";
 import {BookService} from "../book.service";
 import {NgClass, NgForOf, NgIf, SlicePipe} from "@angular/common";

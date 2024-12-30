@@ -1,10 +1,5 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators
-} from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {BookService} from "../book.service";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -27,17 +22,13 @@ import {formatDate} from "@angular/common";
   styleUrl: './book-edit.component.css'
 })
 export class BookEditComponent implements OnInit {
-  private route: ActivatedRoute = inject(ActivatedRoute);
   protected authors: string[] = [];
   protected title: string = '';
   protected categories: string[] = [];
-  private readonly bookId: bigint| undefined;
+  private readonly bookId: bigint | undefined;
   protected submitButton: string = '';
   protected imageLocation: string = '';
   private image: File | undefined;
-  private bookService: BookService = inject(BookService);
-  private authorService: AuthorService = inject(AuthorService);
-  private categoryService: CategoryService = inject(CategoryService);
 
   bookEditForm: FormGroup = new FormGroup({
     image: new FormControl(null),
@@ -52,7 +43,8 @@ export class BookEditComponent implements OnInit {
     releaseDate: new FormControl(null)
   });
 
-  constructor(private titleService: Title, private router: Router) {
+  constructor(private titleService: Title, private router: Router, private route: ActivatedRoute, private bookService: BookService,
+              private authorService: AuthorService, private categoryService: CategoryService) {
     const id = this.route.snapshot.params['id'];
     this.bookId = id ? BigInt(id) : undefined;
     this.submitButton = this.bookId ? 'Edit' : 'Save';
@@ -109,7 +101,9 @@ export class BookEditComponent implements OnInit {
     const book: Book = {
       title: this.bookEditForm.value.title,
       category: {name: this.bookEditForm.value.category},
-      authors: this.bookEditForm.value.authors.map((aut: string) => { return {fullName: aut}; }),
+      authors: this.bookEditForm.value.authors.map((aut: string) => {
+        return {fullName: aut};
+      }),
       price: this.bookEditForm.value.price,
       discount: this.bookEditForm.value.discount,
       releaseDate: this.bookEditForm.value.releaseDate ? new Date(this.bookEditForm.value.releaseDate) : undefined,

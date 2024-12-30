@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {debounceTime, of, Subject, switchMap} from "rxjs";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
@@ -79,8 +79,7 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit, OnCh
       this.highlightedIndex = Math.max(this.highlightedIndex - 1, -1);
       element.scrollTop -= 20;
       event.preventDefault();
-    }
-    else if (event.key === 'Enter')
+    } else if (event.key === 'Enter')
       this.selectHighlightedIndex();
     else if (event.key === 'Backspace' && !this.query)
       this.removeSelectedItem();
@@ -129,12 +128,15 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit, OnCh
   writeValue(option: string): void {
     this.selectedOption = option;
   }
+
   registerOnChange(onChange: any): void {
     this.onChange = onChange;
   }
+
   registerOnTouched(onTouched: any): void {
     this.onTouched = onTouched;
   }
+
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
   }

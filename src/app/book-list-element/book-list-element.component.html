@@ -1,36 +1,41 @@
-<section class="book" [ngClass]="{'scale': !disableScaling, 'no-scale': disableScaling}" [routerLink]="['/books', book.id]">
+<section class="book" [ngClass]="{'scale': !disableScaling, 'no-scale': disableScaling}"
+         [routerLink]="['/books', book.id]">
   <div class="book-image">
     <img [src]="book.image" (error)="book.image = 'assets/no_available_image.jpg'" alt=""/>
   </div>
   <div class="book-details">
     <div class="book-info">
       <div class="title-category">
-        <h1>{{book.title}}</h1>
-        <p class="book-category">{{book.category.name}}</p>
+        <h1>{{ book.title }}</h1>
+        <p class="book-category">{{ book.category.name }}</p>
       </div>
       <div class="book-authors">
-        <p class="author" *ngFor="let author of authors | slice:0:2">{{author.fullName}}</p>
-        <p *ngIf="authors.length > 2" class="more-authors">+{{authors.length - 2}} more</p>
+        <p class="author" *ngFor="let author of authors | slice:0:2">{{ author.fullName }}</p>
+        <p *ngIf="authors.length > 2" class="more-authors">+{{ authors.length - 2 }} more</p>
       </div>
       <div *ngIf="tags.length > 0" class="tags">
-        <p *ngFor="let tag of tags | slice: 0:5">{{tag}}</p>
-        <p *ngIf="tags.length > 5">+{{tags.length - 5}}</p>
+        <p *ngFor="let tag of tags | slice: 0:5">{{ tag }}</p>
+        <p *ngIf="tags.length > 5">+{{ tags.length - 5 }}</p>
       </div>
     </div>
   </div>
   <div class="book-pricing">
-    <p [ngClass]="{'invisible': book.discount === 0}" class="discount">-{{book.discount}}%</p>
-    <p>{{bookPrice}} HUF</p>
+    <p [ngClass]="{'invisible': book.discount === 0}" class="discount">-{{ book.discount }}%</p>
+    <p>{{ bookPrice }} HUF</p>
     <p [ngClass]="{'text-green-500': book.available, 'text-red-600': !book.available}">
-      {{book.available ? 'Available' : 'Not available'}}
+      {{ book.available ? 'Available' : 'Not available' }}
     </p>
   </div>
   <div class="buttons">
-    <button type="button" (mouseenter)="bookmarkHovered = true" (mouseleave)="bookmarkHovered = false" class="bookmark-button" title="Bookmark" *ngIf="user" (click)="bookMarkBook(); $event.stopPropagation()">
-      <i class="fa-solid fa-bookmark" [ngClass]="{'show-bookmark': (bookmarked && !bookmarkHovered) || (!bookmarked && bookmarkHovered)}"></i>
-      <i class="fa-regular fa-bookmark" [ngClass]="{'show-bookmark': (!bookmarked && !bookmarkHovered) || (bookmarked && bookmarkHovered)}"></i>
+    <button type="button" (mouseenter)="bookmarkHovered = true" (mouseleave)="bookmarkHovered = false"
+            class="bookmark-button" title="Bookmark" *ngIf="user" (click)="bookMarkBook(); $event.stopPropagation()">
+      <i class="fa-solid fa-bookmark"
+         [ngClass]="{'show-bookmark': (bookmarked && !bookmarkHovered) || (!bookmarked && bookmarkHovered)}"></i>
+      <i class="fa-regular fa-bookmark"
+         [ngClass]="{'show-bookmark': (!bookmarked && !bookmarkHovered) || (bookmarked && bookmarkHovered)}"></i>
     </button>
-    <button type="button" class="delete-button" title="Delete" *ngIf="user && user?.role !== 'CUSTOMER'" (click)="deleteBook(); $event.stopPropagation()">
+    <button type="button" class="delete-button" title="Delete" *ngIf="user && user?.role !== 'CUSTOMER'"
+            (click)="deleteBook(); $event.stopPropagation()">
       <i class="fa-solid fa-trash"></i>
       Delete
     </button>

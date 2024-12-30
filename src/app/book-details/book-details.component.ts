@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {BookService} from '../book.service';
-import { Book } from '../book';
+import {Component, OnInit} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {BookService} from "../book.service";
+import {Book} from "../book";
 import {Title} from "@angular/platform-browser";
 import {AuthService} from "../auth.service";
 import {User} from "../user";
@@ -15,7 +15,6 @@ import {User} from "../user";
   styleUrl: './book-details.component.css'
 })
 export class BookDetailsComponent implements OnInit {
-  private bookService = inject(BookService);
   private bookId: bigint;
   protected bookmarked = false;
   protected bookmarkHovered = false;
@@ -23,7 +22,8 @@ export class BookDetailsComponent implements OnInit {
   protected user: User | undefined;
   protected bookPrice: number = 0;
 
-  constructor(private title: Title, private router: Router, private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private title: Title, private router: Router, private route: ActivatedRoute, private authService: AuthService,
+              private bookService: BookService) {
     this.bookId = BigInt(this.route.snapshot.params['id']);
   }
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Book} from "../book";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {Observable} from "rxjs";

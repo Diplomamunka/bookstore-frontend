@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
@@ -21,16 +21,14 @@ import {CustomSelectComponent} from "../custom-select/custom-select.component";
   styleUrl: './profile-edit.component.css'
 })
 export class ProfileEditComponent implements OnInit {
-  private route: ActivatedRoute = inject(ActivatedRoute);
-  protected authService: AuthService = inject(AuthService);
   protected user!: User;
   protected role: string = '';
   protected successful: string = '';
 
   profileEditForm: FormGroup = new FormGroup({
-      firstName:  new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
       lastName: new FormControl('', [Validators.required, Validators.pattern("[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]+")]),
-      email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
+      email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       password2: new FormControl('', [Validators.required, Validators.minLength(8)]),
     },
@@ -39,7 +37,7 @@ export class ProfileEditComponent implements OnInit {
     }
   );
 
-  constructor(private location: Location, private router: Router) {
+  constructor(private location: Location, private router: Router, private route: ActivatedRoute, protected authService: AuthService) {
   }
 
   ngOnInit() {
