@@ -23,7 +23,7 @@ import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/for
   ]
 })
 export class CustomSelectComponent implements ControlValueAccessor, OnInit, OnChanges {
-  private query: string = '';
+  protected query: string = '';
   @Input() options: string[] = [];
   protected filteredOptions: string[] = [];
   protected selectedOption: string = '';

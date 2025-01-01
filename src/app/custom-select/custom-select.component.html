@@ -6,7 +6,7 @@
         {{ selectedOption }}
         <span class="remove-tag" (click)="removeSelectedItem()">×</span>
       </div>
-      <input id="search" type="text" [disabled]="disabled" (input)="onInput()" (keydown)="onKeyDown($event)"
+      <input id="search" type="text" [(ngModel)]="query" [disabled]="disabled" (input)="onInput()" (keydown)="onKeyDown($event)"
              class="select-input" placeholder="Start typing..."/>
     </div>
 
