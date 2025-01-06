@@ -119,7 +119,7 @@ export class BookEditComponent implements OnInit {
             this.image!
           ).subscribe(() => this.router.navigate(['/books', book.id]));
         } else {
-          console.log(book);
+          this.router.navigate(['/books', book.id]);
         }
       });
     } else {
