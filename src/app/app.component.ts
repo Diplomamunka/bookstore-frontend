@@ -35,8 +35,11 @@ export class AppComponent implements OnInit {
   }
 
   handleSignOut() {
-    this.authService.signOut().subscribe(() =>
-      this.router.url === '/' ? window.location.reload() : this.router.navigate(['/']));
+    console.log("ASDASDS");
+    this.authService.signOut().subscribe(() => {
+      console.log("ASDADAS");
+      this.router.navigate(['/']).then(() => window.location.reload());
+    });
   }
 
   toggleProfileOptions() {

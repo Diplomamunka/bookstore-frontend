@@ -51,7 +51,7 @@ export class ProfileEditComponent implements OnInit {
             .subscribe(user => {
               if (loggedInUser.email === user.email) {
                 this.user = loggedInUser;
-                this.router.navigate(['/profile/edit']);
+                this.router.navigate(['/profile/edit'], {replaceUrl: true});
                 this.updateForm();
               } else {
                 this.user = user;

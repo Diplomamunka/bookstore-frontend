@@ -106,7 +106,13 @@ export class AuthService extends BaseService {
   public update(user: User) {
     user.role = 'CUSTOMER';
     return this.httpClient.put<User>(this.url + "/profile/update", user, {headers: {'Authorization': `${this.cookieService.getCookie('TOKEN')}`}})
-      .pipe(catchError((error: HttpErrorResponse) => {
+      .pipe(updatedUser => {
+        let authorization: string = `Basic ${btoa(`${user.email}:${user.password}`)}`
+        this.cookieService.setCookie('TOKEN', authorization, 1);
+        this.loggedInUser.next(user);
+        return updatedUser;
+      },
+        catchError((error: HttpErrorResponse) => {
         if (error.status === 404)
           alert(error.error);
         throw error;
